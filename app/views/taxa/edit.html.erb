@@ -1,0 +1,40 @@
+<h1><%= action_name.humanize %> <%= @rank_name %></h1>
+
+<% form_for(@taxon) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name_la %><br />
+    <%= f.text_field :name_la %>
+  </p>
+  <p>
+    <%= f.label :name_en %><br />
+    <%= f.text_field :name_en %>
+  </p>
+  <p>
+    <%= f.label :name_ru %><br />
+    <%= f.text_field :name_ru %>
+  </p>
+  <p>
+    <%= f.label :name_uk %><br />
+    <%= f.text_field :name_uk %>
+  </p>
+  <p>
+    <%= f.label :synonims %><br />
+    <%= f.text_field :synonims %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label "Insert after" %><br />
+    <%= f.select :sort, controller.sort_select_options %>
+  </p>
+  <p>
+    <%= f.submit controller.action_name == 'edit' ? 'Update' : 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to "#{@rank_name.pluralize.humanize} index", :action => "index" %>  |
+<%= link_to "Add new #{@rank_name}", :action => "new" %>

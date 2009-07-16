@@ -1,0 +1,2 @@
+module OrdinesHelper
+end

@@ -1,0 +1,31 @@
+<h1>Listing <%= @rank_name.pluralize %></h1>
+
+<table class="bordered">
+  <tr>
+    <th class="numeric">Sort</th>
+    <th>Name la</th>
+    <th>Name en</th>
+    <th>Name ru</th>
+    <th>Name uk</th>
+    <th>Syn</th>
+    <th>Descr</th>
+    <th><i>delete</i></th>
+  </tr>
+
+<% @taxa.each do |taxon| %>
+  <tr>
+    <td class="numeric"><%=h taxon.sort %></td>
+    <td><%=link_to h(taxon.name_la), :action => "edit", :id => taxon %></td>
+    <td><%=h taxon.name_en %></td>
+    <td><%=h taxon.name_ru %></td>
+    <td><%=h taxon.name_uk %></td>
+    <td class="boolean"><%= !taxon.synonims.empty? ? "+" : "-" %></td>
+    <td class="boolean"><%= !taxon.description.empty? ? "+" : "-" %></td>
+    <td>[<%= link_to 'delete', taxon, :confirm => 'Are you sure?', :method => :delete %>]</td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to "Add new #{@rank_name}", :action => "new" %>
