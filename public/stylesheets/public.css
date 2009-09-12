@@ -1,0 +1,22 @@
+body {
+  font-family: verdana, arial, helvetica, sans-serif;
+}
+
+/* Header */
+
+#header {
+    background-color: #D0E0FF;
+}
+
+/* Footer */
+
+#footer {
+    background-color: ;
+}
+
+/* Leftpane */
+
+#leftpane {
+    width: 300px;
+    background-color: #EFF4EF;
+}

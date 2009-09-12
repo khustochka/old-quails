@@ -30,7 +30,7 @@
     <%= f.labelled_set_sorting_combo "Insert after", @taxa, @taxon, "{:name_la} / {:name_ru}" %>
   </p>
   <p>
-    <%= f.submit action_name == 'edit' ? 'Update' : 'Create' %>
+    <%= f.submit params[:id] ? 'Update' : 'Create' %>
   </p>
 <% end %>
 

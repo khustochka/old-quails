@@ -4,10 +4,22 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
+
+    def public404
+        render "application/public404", :layout => "public", :status => 404
+    end
+
+    def admin404
+      if admin?
+        render "application/admin404", :layout => "admin", :status => 404 
+      else
+        public404
+      end
+    end
   
   private
     def require_admin
-      render( "services/public404", :status => 404 ) if !admin?
+      public404 if !admin?
     end
 
     def admin?

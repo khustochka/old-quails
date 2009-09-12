@@ -198,8 +198,3 @@ ru:
       words_connector: ", "
       two_words_connector: " и "
       last_word_connector: " и "
-
-  actions:
-    listing: "Список"
-  models:
-    ordines: "отрядов"

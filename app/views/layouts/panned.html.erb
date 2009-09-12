@@ -1,0 +1,13 @@
+<% content_for :main_content do %>
+  <table><tr>
+    <td id="leftpane">
+      <%= yield :leftpane %>
+    </td>
+    <td id="content">
+      <%= yield %>
+    </td>
+   </tr></table>
+<% end %>
+
+<% inside_layout 'layouts/public' do %>
+<% end %>
