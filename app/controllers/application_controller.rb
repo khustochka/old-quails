@@ -2,7 +2,9 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  helper :all # include all helpers, all the time
+
+  #helper :all # include all helpers, all the time # TODO: uncomment if some helper not working
+
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
     def public404
