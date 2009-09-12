@@ -13,7 +13,7 @@ module ActionView::Helpers
       end
     end
 
-    class CaptureHelper
+    module CaptureHelper
       def inside_layout(layout, &block)
           layout = layout.include?('/') ? layout : "layouts/#{layout}"
 
