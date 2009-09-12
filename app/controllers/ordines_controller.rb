@@ -1,2 +1,0 @@
-class OrdinesController < TaxaController
-end

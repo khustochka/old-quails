@@ -9,7 +9,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090713183311) do
+ActiveRecord::Schema.define(:version => 20090911193700) do
+
+  create_table "familiae", :force => true do |t|
+    t.string  "name_la",     :limit => 128, :default => "", :null => false
+    t.string  "name_en",     :limit => 128
+    t.string  "name_ru",     :limit => 128, :default => "", :null => false
+    t.string  "name_uk",     :limit => 128, :default => "", :null => false
+    t.text    "description"
+    t.string  "synonims",    :limit => 256
+    t.integer "sort",                                       :null => false
+    t.integer "ordo_id",                                    :null => false
+  end
+
+  add_index "familiae", ["name_la"], :name => "name_la"
+  add_index "familiae", ["ordo_id"], :name => "ordo_id"
+  add_index "familiae", ["sort"], :name => "sort"
 
   create_table "ordines", :force => true do |t|
     t.string  "name_la",     :limit => 128, :default => "", :null => false
@@ -20,5 +35,31 @@ ActiveRecord::Schema.define(:version => 20090713183311) do
     t.string  "synonims",    :limit => 256, :default => "", :null => false
     t.integer "sort",                                       :null => false
   end
+
+  add_index "ordines", ["name_la"], :name => "name_la"
+  add_index "ordines", ["sort"], :name => "sort"
+
+  create_table "species", :force => true do |t|
+    t.string  "code",           :limit => 6,   :default => "", :null => false
+    t.string  "name_la",        :limit => 128, :default => "", :null => false
+    t.string  "authority",      :limit => 128, :default => "", :null => false
+    t.string  "name_en",        :limit => 128, :default => "", :null => false
+    t.string  "name_ru",        :limit => 128, :default => "", :null => false
+    t.string  "name_uk",        :limit => 128, :default => "", :null => false
+    t.text    "description"
+    t.text    "my_description"
+    t.string  "synonims",       :limit => 256
+    t.integer "sort",                                          :null => false
+    t.integer "familia_id",                                    :null => false
+    t.integer "image_id"
+    t.string  "iucn_id",        :limit => 2
+    t.string  "iucn_status"
+    t.string  "iucn_name_la"
+  end
+
+  add_index "species", ["code"], :name => "code"
+  add_index "species", ["familia_id"], :name => "familia_id"
+  add_index "species", ["name_la"], :name => "name_la"
+  add_index "species", ["sort"], :name => "sort"
 
 end

@@ -1,10 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :somes
 
+  map.with_options(:path_prefix => "/admin", :namespace => "taxonomy/") do |rank|
+    rank.resources :ordines, :familiae
+    rank.resources :species, :except => [:index, :show]
+  end 
 
-  map.resources :familiae
-  
-  map.resources :ordines
+  map.resources :species, :namespace => "taxonomy/", :as => :aves, :only => [:index, :show]
+
+  map.connect '/admin/*other', :controller => "services", :action => "admin404"
+
+#  map.connect 'aves/:id/edit', :controller => :services, :action => :redirect_to, :target_controller => :species, :target_action => :edit 
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -38,13 +43,17 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  map.root :controller => "ordines"
+  map.root :controller => "services", :action => "public404"
+
+
+  #map.page404 '/404', :controller => "services", :action => "public404"
+  map.connect '/*other', :controller => "services", :action => "public404"
 
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  #map.connect ':controller/:action/:id'
+  #map.connect ':controller/:action/:id.:format'
 end

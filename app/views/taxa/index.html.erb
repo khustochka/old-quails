@@ -1,3 +1,7 @@
+<% content_for :page_title do %>
+  <%= @rank_name.pluralize.humanize %>: <%= controller.action_name %>
+<% end %>
+
 <h1>Listing <%= @rank_name.pluralize %></h1>
 
 <table class="bordered">
@@ -9,19 +13,19 @@
     <th>Name uk</th>
     <th>Syn</th>
     <th>Descr</th>
-    <th><i>delete</i></th>
+    <th><i>del</i></th>
   </tr>
 
 <% @taxa.each do |taxon| %>
   <tr>
     <td class="numeric"><%=h taxon.sort %></td>
-    <td><%=link_to h(taxon.name_la), :action => "edit", :id => taxon %></td>
+    <td><%=link_to h(taxon.name_la), :action => "show", :id => taxon %></td>
     <td><%=h taxon.name_en %></td>
     <td><%=h taxon.name_ru %></td>
     <td><%=h taxon.name_uk %></td>
     <td class="boolean"><%= !taxon.synonims.empty? ? "+" : "-" %></td>
     <td class="boolean"><%= !taxon.description.empty? ? "+" : "-" %></td>
-    <td>[<%= link_to 'delete', taxon, :confirm => 'Are you sure?', :method => :delete %>]</td>
+    <td>[<%= link_to 'x', taxon, :confirm => 'Are you sure?', :method => :delete %>]</td>
   </tr>
 <% end %>
 </table>
