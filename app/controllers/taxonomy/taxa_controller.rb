@@ -49,13 +49,11 @@ module Taxonomy
     @taxon = @model_class.new(params[@rank_name.to_sym])
 
     respond_to do |format|
-      @model_class.update_all("sort = sort + 1", "sort >= #{@taxon[:sort]}")
-      if @taxon.save
-        flash[:notice] = "<p class=\"notice\">#{@rank_name.humanize} was successfully created.</p>"
+      if @taxon.insert_mind_sorting
+        flash[:notice] = "#{@rank_name.humanize} was successfully created."
         format.html { redirect_to @taxon, :action => 'edit' }
         #format.xml  { render :xml => @taxon, :status => :created, :location => @taxon }
       else
-        @model_class.update_all("sort = sort - 1", "sort > #{@taxon[:sort]}")
         find_all_taxa
         format.html { render 'taxa/form' }
         #format.xml  { render :xml => @taxon.errors, :status => :unprocessable_entity }
@@ -66,30 +64,12 @@ module Taxonomy
 
   def update
     respond_to do |format|
-      new_sort = params[@rank_name.to_sym][:sort].to_i
-      old_sort = @taxon[:sort].to_i
+            
+      if @taxon.update_mind_sorting(params[@rank_name.to_sym])
 
-      begin
-        @model_class.transaction do
-            if new_sort != old_sort
-              diff = (old_sort - new_sort) / (old_sort - new_sort).abs
-              max_sort = [old_sort, new_sort - diff].max
-              min_sort = [old_sort, new_sort - diff].min
-              @model_class.update_all("sort = sort + (#{diff})", "sort > #{min_sort} AND sort < #{max_sort}")
-            end
-            save_success = @taxon.update_attributes(params[@rank_name.to_sym])
-            raise "error" if !save_success
-        end
-        save_success = true
-      rescue
-        save_success = false
-      end
-      
-      if save_success
-
-        flash[:notice] = "<p class=\"notice\">#{@rank_name.humanize} was successfully updated.</p>"
+        flash[:notice] = "#{@rank_name.humanize} was successfully updated."
         
-        format.html { redirect_to :action => "edit" }
+        format.html { redirect_to :action => "show" }
         #format.xml  { head :ok }
       else
 
@@ -103,8 +83,7 @@ module Taxonomy
 
   
   def destroy
-    @model_class.update_all("sort = sort - 1", "sort > #{@taxon[:sort]}")
-    @taxon.destroy
+    @taxon.destroy_mind_sorting
 
     respond_to do |format|
       format.html { redirect_to :action => "index" }  

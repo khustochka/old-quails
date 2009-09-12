@@ -7,8 +7,9 @@ module ActionView::Helpers
 
       def method_missing(method_name, *args)
         if method_name.to_s.include?('labelled_')
-          args2 = args[1].nil? ? args : args[1..-1]
-          label(args[0]) + "\n<br />\n" + send(method_name.to_s.gsub(/labelled_(.*)/, '\1').intern, *args2)
+          label(args[0]) + "\n<br />\n" + send(method_name.to_s.gsub(/labelled_(.*)/, '\1').intern, *(args[1].nil? ? args : args[1..-1]))
+        else
+          super
         end
       end
     end
