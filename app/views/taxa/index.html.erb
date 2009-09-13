@@ -4,6 +4,17 @@
 
 <h1>Listing <%= model_name.pluralize %></h1>
 
+<% weave_table @taxa do |wt| %>
+   <%= wt.numeric :sort %>
+   <!--%= wt.string :name_la, :link_to => {:action => "show"} %-->
+   <%= wt.string :name_en %>
+   <%= wt.string :name_ru %>
+   <%= wt.string :name_uk %>
+   <%= wt.bool :synonims %>
+   <%= wt.bool :description %>
+   <!--%= wt.const "<em>del</em>", "x", :link_to => {:confirm => 'Are you sure?', :method => :delete} %-->
+<% end %>
+
 <table class="bordered">
   <tr>
     <th class="numeric">Sort</th>

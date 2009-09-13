@@ -5,6 +5,8 @@ module Taxonomy
 
   layout "admin"
 
+  helper :taxa
+
   before_filter :find_taxon,  :only => [:show, :update, :destroy]
   before_filter :find_all_taxa,  :only => [:index, :new, :show]
 
@@ -38,11 +40,11 @@ module Taxonomy
 
 
   def create
-    @taxon = model_class.new(params[rank_name.to_sym])
+    @taxon = model_class.new(params[model_name.to_sym])
 
     respond_to do |format|
       if @taxon.insert_mind_sorting
-        flash[:notice] = "#{rank_name.humanize} was successfully created."
+        flash[:notice] = "#{model_name.humanize} was successfully created."
         format.html { redirect_to @taxon, :action => 'edit' }
         #format.xml  { render :xml => @taxon, :status => :created, :location => @taxon }
       else
@@ -57,9 +59,9 @@ module Taxonomy
   def update
     respond_to do |format|
             
-      if @taxon.update_mind_sorting(params[rank_name.to_sym])
+      if @taxon.update_mind_sorting(params[model_name.to_sym])
 
-        flash[:notice] = "#{rank_name.humanize} was successfully updated."
+        flash[:notice] = "#{model_name.humanize} was successfully updated."
         
         format.html { redirect_to :action => "show" }
         #format.xml  { head :ok }
