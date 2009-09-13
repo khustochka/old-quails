@@ -5,9 +5,6 @@ module Taxonomy
 
   layout "admin"
 
-  #write_inheritable_attribute :rank_name, controller_name.singularize
-  #write_inheritable_attribute :model_class, read_inheritable_attribute(:rank_name).camelize.constantize
-
   before_filter :find_taxon,  :only => [:show, :update, :destroy]
   before_filter :find_all_taxa,  :only => [:index, :new, :show]
 
@@ -95,15 +92,7 @@ module Taxonomy
     def find_all_taxa
       @taxa = model_class.all(:order => "sort")
     end
-
-    def rank_name
-      self.class.rank_name
-    end
-
-    def model_class
-      self.class.model_class
-    end
-
+    
   end
 
 end
