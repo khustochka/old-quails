@@ -7,7 +7,8 @@ class String
     self.gsub(' ','_').capitalize
   end
 
-  #def slav_humanize
-  #  (self.sub(/^(.+) ([^ ]+)$/) {|match| "\2 \1"}).capitalize
-  #end
+  def slav_humanize
+    k = self.mb_chars.split
+    #.capitalize.to_s
+  end
 end

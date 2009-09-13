@@ -1,9 +1,9 @@
 <% content_for :page_title do %>
-  <%= action_name.humanize %> <%= @rank_name %>
+  <%= action_name.humanize %> <%= model_name %>
 <% end %>
 
 
-<h1><%= action_name.humanize %> <%= @rank_name %></h1>
+<h1><%= action_name.humanize %> <%= model_name %></h1>
 
 <% form_for(@taxon) do |f| %>
   <%= f.error_messages %>
@@ -34,5 +34,5 @@
   </p>
 <% end %>
 
-<%= link_to "#{@rank_name.pluralize.humanize} index", :action => "index" %>
-<%= " | " + link_to("Add new #{@rank_name}", :action => "new") if controller.action_name != 'new' %>
+<%= link_to "#{model_name.pluralize.humanize} index", :action => "index" %>
+<%= " | " + link_to("Add new #{model_name}", :action => "new") if controller.action_name != 'new' %>
