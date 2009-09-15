@@ -7,6 +7,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :species, :namespace => "taxonomy/", :as => :aves, :only => [:index, :show]
 
+  map.connect '/admin/k', :controller => "application", :action => "admin_login"
+
   map.connect '/admin/*other', :controller => "application", :action => "admin404"
 
 #  map.connect 'aves/:id/edit', :controller => :services, :action => :redirect_to, :target_controller => :species, :target_action => :edit 
