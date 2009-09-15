@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
     end
 
     def admin?
-      if ENV['RAILS'].eql?('production')
+      if ENV['RAILS_ENV'].eql?('production')
         admin_session? && require_admin_auth
       else
         true
