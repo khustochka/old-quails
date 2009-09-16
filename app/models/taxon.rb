@@ -1,4 +1,7 @@
 class Taxon < ActiveRecord::Base
+
+  self.abstract_class = true # I've read the FM and got it!
+
   validates_presence_of :name_la, :name_ru, :name_uk, :sort
        
   def to_param  # overridden

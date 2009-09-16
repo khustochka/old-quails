@@ -11,4 +11,16 @@ class String
     k = self.mb_chars.split
     #.capitalize.to_s
   end
+
+  def if_not_empty(mask, else_option = '')
+    self.empty? ? else_option : mask.gsub(/\%s/, self)
+  end
+end
+
+class Object
+
+  def if_true(positive, negative = '')
+    self ? postive : negative
+  end
+
 end

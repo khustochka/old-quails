@@ -1,0 +1,36 @@
+<% weave_table bunch do |wt| %>
+   <%= wt.numeric :sort %>
+   <!--%= wt.string :name_la, :link_to => {:action => "show"} %-->
+   <%= wt.string :name_en %>
+   <%= wt.string :name_ru %>
+   <%= wt.string :name_uk %>
+   <%= wt.bool :synonims %>
+   <%= wt.bool :description %>
+   <!--%= wt.const "<em>del</em>", "x", :link_to => {:confirm => 'Are you sure?', :method => :delete} %-->
+<% end %>
+
+<table class="bordered">
+  <tr>
+    <th class="numeric">Sort</th>
+    <th>Name la</th>
+    <th>Name en</th>
+    <th>Name ru</th>
+    <th>Name uk</th>
+    <th>Syn</th>
+    <th>Descr</th>
+    <th><em>del</em></th>
+  </tr>
+
+<% bunch.each do |item| %>
+  <tr>
+    <td class="numeric"><%=h item.sort %></td>
+    <td><%=link_to h(item.name_la), :action => "show", :id => item %></td>
+    <td><%=h item.name_en %></td>
+    <td><%=h item.name_ru %></td>
+    <td><%=h item.name_uk %></td>
+    <td class="boolean"><%= !item.synonims.empty? ? "+" : "-" %></td>
+    <td class="boolean"><%= !item.description.empty? ? "+" : "-" %></td>
+    <td>[<%= link_to 'x', url_for(item), :confirm => 'Are you sure?', :method => :delete %>]</td>
+  </tr>
+<% end %>
+</table>

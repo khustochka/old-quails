@@ -1,38 +1,13 @@
 <% content_for :page_title do %>
-  <%= action_name.humanize %> <%= model_name %>
+  <%= @taxon.name_la.if_not_empty( "#{model_name.capitalize} %s", "#{action_name.humanize} #{model_name}") %>
 <% end %>
 
+<h1><%= @taxon.name_la.if_not_empty( "#{@taxon.name_ru} / <em>%s</em>", "#{action_name.humanize} #{model_name}") %></h1>
 
-<h1><%= action_name.humanize %> <%= model_name %></h1>
+<%= render( :partial => "taxa/table", :locals => { :bunch => @taxon.subtaxa } ) if !@taxon.subtaxa.empty? %>
 
-<% form_for(@taxon) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.labelled_text_field :name_la  %>
-  </p>
-  <p>
-    <%= f.labelled_text_field :name_en %>
-  </p>
-  <p>
-    <%= f.labelled_text_field :name_ru %>
-  </p>
-  <p>
-    <%= f.labelled_text_field :name_uk %>
-  </p>
-  <p>
-    <%= f.labelled_text_field :synonims %>
-  </p>
-  <p>
-    <%= f.labelled_text_area :description %>
-  </p>
-  <p>
-    <%= f.labelled_set_sorting_combo "Insert after", @taxa, @taxon, "{:name_la} / {:name_ru}" %>
-  </p>
-  <p>
-    <%= f.submit params[:id] ? 'Update' : 'Create' %>
-  </p>
-<% end %>
+<h2>Редактировать</h2>
+<%= render :partial => "taxa/form",  :locals => { :item => @taxon, :items => @taxa } %>
 
 <%= link_to "#{model_name.pluralize.humanize} index", :action => "index" %>
 <%= " | " + link_to("Add new #{model_name}", :action => "new") if controller.action_name != 'new' %>
