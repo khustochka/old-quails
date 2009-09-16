@@ -24,13 +24,13 @@
 <% bunch.each do |item| %>
   <tr>
     <td class="numeric"><%=h item.sort %></td>
-    <td><%=link_to h(item.name_la), :action => "show", :id => item %></td>
+    <td><%= link_to h(item.name_la), item %></td>
     <td><%=h item.name_en %></td>
     <td><%=h item.name_ru %></td>
     <td><%=h item.name_uk %></td>
     <td class="boolean"><%= !item.synonims.empty? ? "+" : "-" %></td>
     <td class="boolean"><%= !item.description.empty? ? "+" : "-" %></td>
-    <td>[<%= link_to 'x', url_for(item), :confirm => 'Are you sure?', :method => :delete %>]</td>
+    <td>[<%= link_to 'x', item, :confirm => 'Are you sure?', :method => :delete %>]</td>
   </tr>
 <% end %>
 </table>

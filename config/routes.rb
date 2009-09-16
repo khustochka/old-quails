@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.with_options(:path_prefix => "/admin", :namespace => "taxonomy/") do |rank|
-    rank.resources :ordines, :familiae
+    rank.resources :ordines, :has_many => :familiae
     rank.resources :species, :except => [:index, :show]
   end 
 

@@ -1,6 +1,8 @@
 module Taxonomy
   class TaxaController < ApplicationController
 
+  helper_method :url_for
+
   before_filter :require_admin
 
   layout "admin"
@@ -20,7 +22,7 @@ module Taxonomy
 
 
   def show
-    render 'taxa/form'
+    render 'taxa/add_edit'
   end
 
 
@@ -28,7 +30,7 @@ module Taxonomy
     @taxon = model_class.new(:sort => @taxa.size+1)
 
     respond_to do |format|
-      format.html { render 'taxa/form' }
+      format.html { render 'taxa/add_edit' }
       #format.xml  { render :xml => @taxon }
     end
   end
@@ -49,7 +51,7 @@ module Taxonomy
         #format.xml  { render :xml => @taxon, :status => :created, :location => @taxon }
       else
         find_all_taxa
-        format.html { render 'taxa/form' }
+        format.html { render 'taxa/add_edit' }
         #format.xml  { render :xml => @taxon.errors, :status => :unprocessable_entity }
       end
     end
@@ -68,7 +70,7 @@ module Taxonomy
       else
 
         find_all_taxa
-        format.html { render 'taxa/form' }
+        format.html { render 'taxa/add_edit' }
         #format.xml  { render :xml => @taxon.errors, :status => :unprocessable_entity }
         
       end
@@ -93,6 +95,10 @@ module Taxonomy
 
     def find_all_taxa
       @taxa = model_class.all(:order => "sort")
+    end
+
+    def url_for(taxon)
+      super( taxon.respond_to?(:supertaxon) ? [taxon.supertaxon, taxon] : taxon )
     end
     
   end
