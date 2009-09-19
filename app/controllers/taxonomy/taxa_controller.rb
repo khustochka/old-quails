@@ -94,7 +94,7 @@ module Taxonomy
     end
 
     def find_all_taxa
-      @taxa = model_class.all(:order => "sort")
+      @taxa = (!@taxon.nil? && @taxon.respond_to?(:supertaxon)) ? @taxon.supertaxon.subtaxa : model_class.all(:order => "sort")  # todo: сомнительно
     end
 
     def url_for(taxon)
