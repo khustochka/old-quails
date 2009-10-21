@@ -3,5 +3,5 @@
 .idea/*
 config/database.yml
 log/*.log
-tmp/*
+tmp/*/*
 #config/initializers/credentials.rb
