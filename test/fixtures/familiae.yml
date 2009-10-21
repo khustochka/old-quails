@@ -1,19 +1,57 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+--- 
+familiae_002: 
+  name_en: ""
+  synonims: ""
+  name_la: Haematopodidae
+  name_uk: !binary |
+    0JrRg9C70LjQutC+0YHQvtGA0L7QutC+0LLRlg==
 
-one:
-  name_la: MyString
-  name_en: MyString
-  name_ru: MyString
-  name_uk: MyString
-  synonims: MyString
-  description: MyText
-  sort: 1
+  ordo_id: "11"
+  name_ru: !binary |
+    0JrRg9C70LjQutC+0YHQvtGA0L7QutC+0LLRi9C1
 
-two:
-  name_la: MyString
-  name_en: MyString
-  name_ru: MyString
-  name_uk: MyString
-  synonims: MyString
-  description: MyText
-  sort: 1
+  id: "2"
+  description: ""
+  sort: "1"
+familiae_003: 
+  name_en: ""
+  synonims: ""
+  name_la: Recurvirostridae
+  name_uk: !binary |
+    0KfQvtCx0L7RgtCw0YDQvtCy0ZY=
+
+  ordo_id: "11"
+  name_ru: !binary |
+    0KjQuNC70L7QutC70Y7QstC60L7QstGL0LU=
+
+  id: "4"
+  description: ""
+  sort: "2"
+familiae_004: 
+  name_en: ""
+  synonims: ""
+  name_la: Scolopacidae
+  name_uk: !binary |
+    0JHQsNGA0LDQvdGG0LXQstGW
+
+  ordo_id: "11"
+  name_ru: !binary |
+    0JHQtdC60LDRgdC+0LLRi9C1
+
+  id: "5"
+  description: ""
+  sort: "3"
+familiae_001: 
+  name_en: ""
+  synonims: ""
+  name_la: Gaviidae
+  name_uk: !binary |
+    0JPQsNCz0LDRgNC+0LLRlg==
+
+  ordo_id: "1"
+  name_ru: !binary |
+    0JPQsNCz0LDRgNC+0LLRi9C1
+
+  id: "1"
+  description: ""
+  sort: "1"

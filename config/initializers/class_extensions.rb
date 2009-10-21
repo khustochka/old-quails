@@ -1,5 +1,6 @@
-require "lib/string_extended"
 
-require "lib/actionview_extend"
+require File.join(Rails.root, 'lib/string_extended')
+  
+require File.join(Rails.root, 'lib/actionview_extend')
 
-require "lib/actioncontroller_extend"
+require File.join(Rails.root, 'lib/actioncontroller_extend')

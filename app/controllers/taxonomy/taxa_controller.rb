@@ -87,6 +87,10 @@ module Taxonomy
     end
   end
 
+	def url_for(taxon)
+	  super( taxon.respond_to?(:supertaxon) ? [taxon.supertaxon, taxon] : taxon )
+	end
+
   private
     def find_taxon
       @taxon = model_class.find_by_name_la(params[:id])
@@ -95,10 +99,6 @@ module Taxonomy
 
     def find_all_taxa
       @taxa = (!@taxon.nil? && @taxon.respond_to?(:supertaxon)) ? @taxon.supertaxon.subtaxa : model_class.all(:order => "sort")  # todo: сомнительно
-    end
-
-    def url_for(taxon)
-      super( taxon.respond_to?(:supertaxon) ? [taxon.supertaxon, taxon] : taxon )
     end
     
   end
