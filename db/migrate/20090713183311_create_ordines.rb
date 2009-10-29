@@ -9,6 +9,8 @@ class CreateOrdines < ActiveRecord::Migration
       t.string :synonims, :limit => 256
       t.integer :sort, :null => false
     end
+    add_index "ordines", ["name_la"], :name => "ordines_name_la"
+    add_index "ordines", ["sort"], :name => "ordines_sort"
   end
 
   def self.down
