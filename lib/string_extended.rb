@@ -20,7 +20,7 @@ end
 class Object
 
   def if_true(positive, negative = '')
-    self ? postive : negative
+    self ? positive : negative
   end
 
 end
