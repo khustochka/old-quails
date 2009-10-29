@@ -4,7 +4,7 @@ class OrdoTest < ActiveSupport::TestCase
 
   test "insert should preserve sorting" do
     assert_difference("Ordo.count", 1) do
-      Ordo.new(:name_la => "Midiformes", :name_ru => "Среднеобразные", :name_uk => "Середньоподібні", :sort => Ordo.count / 2).insert_mind_sorting
+      Ordo.new(:name_la => "Midiformes", :name_ru => "Среднеобразные", :name_uk => "Середньоподібні", :description => '', :sort => Ordo.count / 2).insert_mind_sorting
     end
     assert_equal Ordo.find_by_name_la("Midiformes")[:sort], Ordo.count / 2, "Badly inserted"
     assert_equal( (1..Ordo.count).to_a, Ordo.all(:order => :sort).map {|item| item[:sort] }, "Sorting invalid" )

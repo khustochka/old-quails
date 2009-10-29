@@ -15,7 +15,7 @@ class Taxonomy::OrdinesControllerTest < ActionController::TestCase
 
   test "should create ordo" do
     assert_difference('Ordo.count') do
-      post :create, :ordo => { :name_la => "Midiformes", :name_ru => "Среднеобразные", :name_uk => "Середньоподібні", :sort => Ordo.count / 2 }
+      post :create, :ordo => { :name_la => "Midiformes", :name_ru => "Среднеобразные", :name_uk => "Середньоподібні", :description => '', :sort => Ordo.count / 2 }
     end
 
     assert_redirected_to ordo_path(assigns(:taxon))
