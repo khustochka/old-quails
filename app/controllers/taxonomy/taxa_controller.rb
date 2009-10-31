@@ -65,7 +65,7 @@ module Taxonomy
 
         flash[:notice] = "#{model_name.humanize} was successfully updated."
         
-        format.html { redirect_to :action => "show" }
+        format.html { redirect_to :action => "show", :id => @taxon }
         #format.xml  { head :ok }
       else
 
