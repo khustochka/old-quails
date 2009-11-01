@@ -35,4 +35,8 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  def assert_sorting_preserved(klass)
+    assert_equal( (1..klass.count).to_a, klass.all(:order => :sort).map {|item| item[:sort] }, "Sorting invalid" )
+  end
 end
