@@ -12,6 +12,8 @@ module Taxonomy
   before_filter :find_taxon,  :only => [:show, :update, :destroy]
   before_filter :find_all_taxa,  :only => [:index, :new, :show]
 
+  rescue_from ActiveRecord::RecordInvalid, :with => :rescue_invalid_record
+
 
   def index
     respond_to do |format|
@@ -45,35 +47,21 @@ module Taxonomy
     @taxon = model_class.new(params[model_name.to_sym])
 
     respond_to do |format|
-      if @taxon.insert_mind_sorting
-        flash[:notice] = "#{model_name.humanize} was successfully created."
-        format.html { redirect_to @taxon, :action => 'edit' }
-        #format.xml  { render :xml => @taxon, :status => :created, :location => @taxon }
-      else
-        find_all_taxa
-        format.html { render 'taxa/add_edit' }
-        #format.xml  { render :xml => @taxon.errors, :status => :unprocessable_entity }
-      end
+      @taxon.insert_mind_sorting
+      flash[:notice] = "#{model_name.humanize} was successfully created."
+      format.html { redirect_to @taxon, :action => 'edit' }
+      #format.xml  { render :xml => @taxon, :status => :created, :location => @taxon }
     end
   end
 
 
   def update
     respond_to do |format|
-            
-      if @taxon.update_mind_sorting(params[model_name.to_sym])
+      @taxon.update_mind_sorting(params[model_name.to_sym])
+      flash[:notice] = "#{model_name.humanize} was successfully updated."
+      format.html { redirect_to :action => "show", :id => @taxon }
+      #format.xml  { head :ok }
 
-        flash[:notice] = "#{model_name.humanize} was successfully updated."
-        
-        format.html { redirect_to :action => "show", :id => @taxon }
-        #format.xml  { head :ok }
-      else
-
-        find_all_taxa
-        format.html { render 'taxa/add_edit' }
-        #format.xml  { render :xml => @taxon.errors, :status => :unprocessable_entity }
-        
-      end
     end
   end
 
@@ -99,6 +87,14 @@ module Taxonomy
 
     def find_all_taxa
       @taxa = (!@taxon.nil? && @taxon.respond_to?(:supertaxon)) ? @taxon.supertaxon.subtaxa : model_class.all(:order => "sort")  # todo: сомнительно
+    end
+
+    def rescue_invalid_record
+      respond_to do |format|
+        find_all_taxa
+        format.html { render 'taxa/add_edit' }
+        #format.xml  { render :xml => @taxon.errors, :status => :unprocessable_entity }
+      end
     end
     
   end
