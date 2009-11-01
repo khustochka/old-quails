@@ -33,4 +33,25 @@ class OrdoTest < ActiveSupport::TestCase
     assert_sorting_preserved(Ordo)
   end
 
+  test "invalid add should preserve sorting" do
+    assert_raise(ActiveRecord::RecordInvalid) do
+      assert_difference("Ordo.count", 0) do
+        Ordo.new(:name_la => "Scolopaci", :sort => Ordo.count / 2).insert_mind_sorting
+      end
+    end
+    assert_nil Ordo.find_by_name_la("Scolopaci")
+    assert_sorting_preserved(Ordo)
+  end
+
+  test "invalid edit should preserve sorting" do
+    assert_raise(ActiveRecord::RecordInvalid) do
+      assert_difference("Ordo.count", 0) do
+        for_update = Ordo.find_by_sort(Ordo.count * 2 / 3)
+        for_update.update_mind_sorting(:name_la => "Scolopaci", :sort => Ordo.count / 3)
+      end
+    end
+    assert_nil Ordo.find_by_name_la("Scolopaci")
+    assert_sorting_preserved(Ordo)
+  end
+
 end
