@@ -1,7 +1,8 @@
 .*
 !.gitignore
-.idea/*
+.*/*
 config/database.yml
+db/data.yml
 log/*.log
 tmp/*/*
 config/initializers/credentials.rb
