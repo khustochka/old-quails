@@ -6,8 +6,6 @@ RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
-require 'yaml'
-
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -39,13 +37,6 @@ Rails::Initializer.run do |config|
   # Uncomment below to force Rails into production mode when
   # you don't control web/app server and can't set it the proper way
   # ENV['RAILS_ENV'] ||= 'production'
-
-  # read config from yml and merge with ENV (for heroku)
-  configs  = (YAML.load_file('config/config.yml')[RAILS_ENV] rescue {})
-  configs = configs.merge((YAML.load_file('admin_config/config.yml')[RAILS_ENV] rescue {}))
-  configs = configs.merge(ENV)
-  CONFIG = {}
-  configs.each {|key, value| CONFIG[key.to_sym] = value}
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
