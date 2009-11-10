@@ -4,5 +4,5 @@ config/database.yml
 config/admin_config.yml
 db/data.yml
 log/*.log
-tmp/*/*
+tmp/**/*
 *~
