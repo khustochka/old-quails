@@ -1,0 +1,24 @@
+default: &default
+  session_key:    _quails_session
+  session_secret: 81f0a99b09d87d45f17f8de5cd2d5b727d598fe080a07bc416df6d8add308bb540df9a431594a3d9ee27f2975f151463c2c297751c1198aa839e38b0555c2953
+
+open: &open
+  verify_admin:   false
+
+safe: &safe
+  verify_admin:   true
+  admin_username: admin
+  admin_password: f6be234e83759cf6a89d966bb096e7e9acd0f7d7 # pas3wort
+  session_secret: nil # will be generated
+
+development:
+  <<: *default
+  <<: *open
+
+production:
+  <<: *default
+  <<: *open # to protect Admin pages with HTTP auth change 'open' to 'safe' and update admin_username and password
+
+test:
+  <<: *default
+  <<: *safe

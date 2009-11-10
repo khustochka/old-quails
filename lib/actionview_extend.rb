@@ -27,7 +27,7 @@ module ActionView::Helpers
           layout = layout.include?('/') ? layout : "layouts/#{layout}"
 
           @template.instance_variable_set("@content_for_layout", capture(&block))
-          concat(@template.render(:file => layout, :user_full_path => true), block.binding)
+          concat(@template.render(:file => layout, :user_full_path => true))
       end
 
     end

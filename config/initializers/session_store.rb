@@ -5,8 +5,8 @@
 # Make sure the secret is at least 30 characters and all random, 
 # no regular words or you'll be exposed to dictionary attacks.
 ActionController::Base.session = {
-  :key         => '_quails_session',
-  :secret      => '81f0a99b09d87d45f17f8de5cd2d5b727d598fe080a07bc416df6d8add308bb540df9a431594a3d9ee27f2975f151463c2c297751c1198aa839e38b0555c2953'
+  :key         => CONFIG[:session_key] || '_quails_session',
+  :secret      => CONFIG[:session_secret] || ActiveSupport::SecureRandom.hex(64) 
 }
 
 # Use the database for sessions instead of the cookie-based default,

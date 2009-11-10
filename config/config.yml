@@ -1,0 +1,13 @@
+default: &default
+  number_of_posts: 15
+  site_header: birdwatch.org.ua
+
+development:
+  <<: *default
+
+production:
+  <<: *default
+
+test:
+  <<: *default
+
