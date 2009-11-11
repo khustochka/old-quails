@@ -3,31 +3,29 @@ module SessionController
     def admin_login
       reset_session
       #session= {:expire_after => 1.year.from_now.to_s} #TODO: how to set valid session expiration?
-      session[:yediat] = "li-koshki-moshek?"
+      session[CONFIG[:admin_session_ask].to_sym] = CONFIG[:admin_session_reply]
       #redirect_to :controller => 'taxonomy/ordines', :action => 'index'
       render :text => Time.now().to_s
     end
 
   private
     def require_admin
-      public404 if !admin?
+      public404 unless admin_login_success?
     end
 
-    def admin?
-      if ENV['RAILS_ENV'].eql?('production')
-        admin_session? && require_admin_auth
-      else
+    def admin_login_success?
+      CONFIG[:verify_admin] ?
+        admin_session? && require_admin_auth :
         true
-      end
     end
 
     def admin_session?
-      session[:yediat].eql?("li-koshki-moshek?")
+      session[CONFIG[:admin_session_ask].to_sym] == CONFIG[:admin_session_reply]
     end
 
     def require_admin_auth
       authenticate_or_request_with_http_basic do |username, password|
-        username == ADMIN['USER'] &&  Digest::SHA1.hexdigest(password) == ADMIN['PASSWORD']
+        username == CONFIG[:admin_username] &&  Digest::SHA1.hexdigest(password) == CONFIG[:admin_password]
       end
     end
 end
