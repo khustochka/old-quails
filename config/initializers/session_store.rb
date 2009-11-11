@@ -5,14 +5,15 @@
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
 
-secret_file = File.join(Rails.root, "config/secret")
-if File.exist?(secret_file)
-    secret = File.read(secret_file)
-else
-    secret = CONFIG[:session_secret] || ActiveSupport::SecureRandom.hex(64)
-    File.open(secret_file, 'w') { |f| f.write(secret) }
+unless (secret = CONFIG[:session_secret])
+	secret_file = File.join(Rails.root, "config/session_secret")
+	if File.exist?(secret_file)
+		secret = File.read(secret_file)
+	else
+		secret = ActiveSupport::SecureRandom.hex(64)
+		File.open(secret_file, 'w') { |f| f.write(secret) }
+	end
 end
-
 
 ActionController::Base.session = {
   :key         => CONFIG[:session_key] || '_quails_session',

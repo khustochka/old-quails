@@ -1,7 +1,7 @@
 .*
 !.gitignore
 config/database.yml
-config/secret
+config/session_secret
 config/admin_config.yml
 db/data.yml
 log/*.log
