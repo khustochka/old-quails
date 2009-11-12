@@ -10,16 +10,16 @@ SAFE: &SAFE
   admin_username: admin
   admin_password: f6be234e83759cf6a89d966bb096e7e9acd0f7d7 # pas3wort
   admin_session_ask: are_you_admin
-  admin_session_reply: Yes, of course! # You may change this to something completely different 
-  session_secret: nil # will be generated
+  admin_session_reply: Yes,_of_course! # You may change this to something completely different
 
 development:
   <<: *DEFAULT
   <<: *OPEN
 
 production:
-  <<: *DEFAULT
   <<: *OPEN # to protect Admin pages with HTTP auth change 'OPEN' to 'SAFE' and update admin_username and password
+  session_key:    _quails_session
+  # session_secret is not set: it will be generated
 
 test:
   <<: *DEFAULT
