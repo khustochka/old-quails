@@ -16,8 +16,9 @@ unless (secret = CONFIG[:session_secret])
 end
 
 ActionController::Base.session = {
-  :key         => CONFIG[:session_key] || '_quails_session',
-  :secret      => secret
+  :key          => CONFIG[:session_key] || '_quails_session',
+  :secret       => secret,
+  :expires      => 3.years.from_now
 }
 
 # Use the database for sessions instead of the cookie-based default,

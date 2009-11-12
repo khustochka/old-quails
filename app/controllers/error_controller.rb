@@ -5,7 +5,7 @@ module ErrorController
     end
 
     def admin404
-      if admin?
+      if admin_login_success?
         render "application/admin404", :layout => "admin", :status => 404
       else
         public404
