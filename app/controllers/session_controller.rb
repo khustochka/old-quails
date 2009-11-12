@@ -14,9 +14,9 @@ module SessionController
     end
 
     def admin_login_success?
-      CONFIG[:verify_admin] ?
-        admin_session? && require_admin_auth :
-        true
+      CONFIG[:open_access] ?
+        true :
+        admin_session? && require_admin_auth
     end
 
     def admin_session?

@@ -1,13 +1,15 @@
 DEFAULT: &DEFAULT
   number_of_posts: 15
-  site_header: birdwatch.org.ua
 
 development:
   <<: *DEFAULT
+  site_header: birdwatch.org.ua
 
 production:
   <<: *DEFAULT
+  site_header: quails.proj
 
 test:
   <<: *DEFAULT
+  site_header: birdwatch.org.ua
 
