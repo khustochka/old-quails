@@ -1,6 +1,11 @@
+%w(object string).each do |inc_ext|
+  require File.join(Rails.root, "lib/core_ext/#{inc_ext}")
+end
 
-require File.join(Rails.root, 'lib/string_extended')
+%w(base).each do |inc_ext|
+  require File.join(Rails.root, "lib/rails_ext/action_controller/#{inc_ext}")
+end
 
-require File.join(Rails.root, 'lib/actionview_extend')
-
-require File.join(Rails.root, 'lib/actioncontroller_extend')
+%w(base helpers).each do |inc_ext|
+  require File.join(Rails.root, "lib/rails_ext/action_view/#{inc_ext}")
+end

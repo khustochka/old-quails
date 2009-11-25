@@ -1,10 +1,10 @@
 class String
   def lat_humanize
-    self.gsub(/_|\+/,' ').gsub(/ +/,' ').capitalize
+    self.gsub(/_|\+/, ' ').gsub(/ +/, ' ').capitalize
   end
 
   def urlize
-    self.gsub(' ','_').capitalize
+    self.gsub(' ', '_').capitalize
   end
 
   def slav_humanize
@@ -15,12 +15,4 @@ class String
   def if_not_empty(mask, else_option = '')
     self.empty? ? else_option : mask.gsub(/\%s/, self)
   end
-end
-
-class Object
-
-  def if_true(positive, negative = '')
-    self ? positive.gsub(/\%s/, self) : negative
-  end
-
 end
