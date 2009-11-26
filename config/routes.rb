@@ -1,9 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.with_options(:path_prefix => "/admin", :namespace => "taxonomy/") do |rank|
-    rank.resources :ordines, :has_many => :familiae
+    rank.resources :ordines
+    rank.resources :familiae
     rank.resources :species, :except => [:index, :show]
-  end 
+  end
 
   map.resources :species, :namespace => "taxonomy/", :as => :aves, :only => [:index, :show]
 
@@ -31,7 +32,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
   #     products.resources :comments

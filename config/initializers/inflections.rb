@@ -5,8 +5,8 @@
 ActiveSupport::Inflector.inflections do |inflect|
 #   inflect.plural /^(ox)$/i, '\1en'
 #   inflect.singular /^(ox)en/i, '\1'
-   inflect.irregular 'taxon', 'taxa'
-   inflect.irregular 'ordo', 'ordines'
-   inflect.irregular 'familia', 'familiae'
-   inflect.uncountable %w( species )
+  inflect.irregular 'taxon', 'taxa'
+  inflect.irregular 'ordo', 'ordines'
+  inflect.irregular 'familia', 'familiae'
+  inflect.uncountable %w( species )
 end

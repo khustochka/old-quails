@@ -3,7 +3,11 @@ class ActionController::Base
     controller_name.singularize
   end
 
+  def model_sym
+    model_name.to_sym
+  end
+
   def model_class
-    model_name.camelize.constantize
+    controller_name.classify.constantize
   end
 end

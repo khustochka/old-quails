@@ -4,8 +4,8 @@ class Taxon < ActiveRecord::Base
 
   validates_presence_of :name_la, :name_ru, :name_uk, :sort
   validates_uniqueness_of :name_la, :name_ru, :name_uk
-       
-  def to_param  # overridden
+
+  def to_param # overridden
     name_la
   end
 
