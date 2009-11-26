@@ -1,0 +1,11 @@
+- content_for :page_title do
+  = model_name.pluralize.humanize
+  \:
+  = controller.action_name
+
+%h1
+  Listing
+  = model_name.pluralize
+= render :partial => "taxa/table", :locals => { :bunch => @taxa }
+%br
+= link_to "Add new #{model_name}", :action => "new"

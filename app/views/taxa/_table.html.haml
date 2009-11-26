@@ -1,0 +1,51 @@
+-#- weave_table bunch do |wt|
+-#  = wt.numeric :sort
+-#  /
+-#    \%= wt.string :name_la, :link_to => {:action => "show"} %
+-#  = wt.string :name_en
+-#  = wt.string :name_ru
+-#  = wt.string :name_uk
+-#  = wt.bool :synonims
+-#  = wt.bool :description
+-#  /
+-#    \%= wt.const "<em>del</em>", "x", :link_to => {:confirm => 'Are you sure?', :method => :delete} %
+
+%table.bordered
+  %tr
+    %th.numeric
+      Sort
+    %th
+      Name la
+    %th
+      Name en
+    %th
+      Name ru
+    %th
+      Name uk
+    %th
+      Syn
+    %th
+      Descr
+    %th
+      %em
+        del
+  - bunch.each do |item|
+    %tr
+      %td.numeric
+        = h item.sort
+      %td
+        = link_to h(item.name_la), item
+      %td
+        = h item.name_en
+      %td
+        = h item.name_ru
+      %td
+        = h item.name_uk
+      %td.boolean
+        = !item.synonims.empty? ? "+" : "-"
+      %td.boolean
+        = !item.description.empty? ? "+" : "-"
+      %td
+        [
+        = link_to 'x', item, :confirm => 'Are you sure?', :method => :delete
+        ]

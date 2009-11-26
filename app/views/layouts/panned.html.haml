@@ -1,0 +1,9 @@
+- content_for :main_content do
+  %table
+    %tr
+      %td#leftpane
+        = yield :leftpane
+      %td#content
+        = yield
+
+- inside_layout 'layouts/public'

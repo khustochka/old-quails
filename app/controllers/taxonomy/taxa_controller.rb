@@ -17,7 +17,7 @@ module Taxonomy
 
     def index
       respond_to do |format|
-        format.html { render 'taxa/index' } # index.html.erb
+        format.html { render 'taxa/index' }
         #format.xml  { render :xml => @taxa }
       end
     end

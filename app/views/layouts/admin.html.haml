@@ -1,0 +1,19 @@
+!!!
+
+%html{ :xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en" }
+
+  %head
+
+    %meta{ "http-equiv" => "content-type", :content => "text/html; charset=UTF-8" }
+
+    %title= yield :page_title || "!!! Set content_for :page_title !!!"
+
+    = stylesheet_link_tag 'global'
+    = stylesheet_link_tag 'admin'
+
+  %body
+
+    %p.notice
+      = flash[:notice]
+      
+    = yield

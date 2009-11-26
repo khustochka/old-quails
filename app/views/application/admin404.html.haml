@@ -1,0 +1,22 @@
+- content_for :page_title do
+  Ресурс не найден
+
+#errorExplanation.errorExplanation
+  %h2
+    Ресурс не найден
+  %p
+    Link:
+    = link_to request.url
+    %ul
+      %li
+        %b
+          Controller:
+        = controller_name
+        %li
+          %b
+            Action:
+          = action_name
+          %li
+            %b
+              Id:
+            = params[:id]
