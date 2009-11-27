@@ -1,13 +1,22 @@
 !!!
-%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
+
+%html{ :xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en" }
+
   %head
+
     %meta{ :content => "text/html; charset=UTF-8", "http-equiv" => "content-type" }
-    %title
-      = yield :page_title || "!!! Set content_for :page_title !!!"
+
+    %title= yield :page_title || "!!! Set content_for :page_title !!!"
+
     = stylesheet_link_tag 'global'
     = stylesheet_link_tag 'public'
+
   %body
+
     = render :partial => "partials/header"
+
     = yield :main_content || "<div id=\"main\">#{yield}</div>"
+
     = render :partial => "partials/footer"
+    
     = render :partial => "partials/ga"
