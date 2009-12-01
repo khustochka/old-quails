@@ -1,61 +1,62 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
-<title>
-  Internal server error
-</title>
+  <title>
+    Internal server error
+  </title>
 
-  <link href="/stylesheets/global.css" media="screen" rel="stylesheet" type="text/css" />
-  <link href="/stylesheets/public.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/global.css" media="screen" rel="stylesheet" type="text/css"/>
+  <link href="/stylesheets/public.css" media="screen" rel="stylesheet" type="text/css"/>
 
 </head>
 
 <body>
 
 <div id="header">
-  <p id="site_cap">birdwatch.org.ua</p>
+  <p id="site_cap"><%= CONFIG[:site_header] || request.host %></p>
 </div>
 
 
-
-  <table><tr>
+<table>
+  <tr>
     <td id="leftpane">
-
+      &nbsp;
     </td>
     <td id="content">
 
 
-<p class="section_cap">
-Error 500
-</p>
+      <p class="section_cap">
+        Error 500
+      </p>
 
-<h1 class="page_cap">
-Internal server error
-</h1>
+      <h1 class="page_cap">
+        Internal server error
+      </h1>
 
-<p>
-We are sorry, an error has occurred. Please try to reload or visit later. We will do our best to fix this as soon as possible.
-</p>
+      <p>
+        We are sorry, an error has occurred. Please try to reload or visit later. We will do our best to fix this as
+        soon as possible.
+      </p>
 
-<p>
-Простите, произошла ошибка. Попробуйте перезагрузить страницу или зайти позже. Мы постараемся решить эту проблему как можно быстрее.
-</p>
+      <p>
+        Простите, произошла ошибка. Попробуйте перезагрузить страницу или зайти позже. Мы постараемся решить эту
+        проблему как можно быстрее.
+      </p>
 
 
     </td>
-   </tr></table>
-
+  </tr>
+</table>
 
 
 <div id="footer">
   <p>footer</p>
 </div>
-
 
 
 </body>

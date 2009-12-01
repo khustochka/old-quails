@@ -1,4 +1,4 @@
-- form_for(item.respond_to?(:supertaxon) ? [item.supertaxon, item] : item) do |f|
+- form_for(item) do |f|
   = f.error_messages
   %p
     = f.labelled_text_field :name_la

@@ -1,7 +1,7 @@
 module ErrorController
 
   def public404
-    render "application/public404", :layout => "public", :status => 404
+    render "application/public404", :layout => "panned", :status => 404
   end
 
   def admin404

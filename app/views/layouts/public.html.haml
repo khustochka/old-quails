@@ -4,12 +4,32 @@
 
   %head
 
+    -# meta tags
+    -# encoding
     %meta{ :content => "text/html; charset=UTF-8", "http-equiv" => "content-type" }
 
-    %title= yield :page_title || "!!! Set content_for :page_title !!!"
+    -# robots
 
+    -# page information, keywords
+
+    -# verifications (index only)
+
+    -# link tags
+    -# stylesheets
     = stylesheet_link_tag 'global'
     = stylesheet_link_tag 'public'
+
+    -# rss feeds
+
+    -# OpenID (index only)
+
+    -# sitemap (index only)
+
+    -# favicon (index only?)
+
+    -# scripts
+
+    %title= yield :page_title || @page_title || "!!! Set content_for @page_title !!!"
 
   %body
 
