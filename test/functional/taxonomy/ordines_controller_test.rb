@@ -33,7 +33,7 @@ class OrdinesControllerTest < ActionController::TestCase
   end
 
   test "should update ordo" do
-    put :update, :id => ordines(:ordines_014).to_param, :ordo => { :name_la => "Insertiformes", :name_ru => "Заменообразные", :name_uk => "Заміноподібні", :sort => Ordo.count / 3 }
+    post :update, :id => ordines(:ordines_014).to_param, :ordo => { :name_la => "Insertiformes", :name_ru => "Заменообразные", :name_uk => "Заміноподібні", :sort => Ordo.count / 3 }
     assert_redirected_to ordo_path(assigns(:taxon))
   end
 
