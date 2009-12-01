@@ -19,6 +19,7 @@ Rails::Initializer.run do |config|
 
   # And controllers
   config.load_paths += %W( #{RAILS_ROOT}/app/controllers/application )
+  config.load_paths += %W( #{RAILS_ROOT}/app/controllers/taxonomy )
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"

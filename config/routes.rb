@@ -1,12 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.with_options(:path_prefix => "/admin", :namespace => "taxonomy/") do |rank|
+  map.with_options(:path_prefix => "/admin") do |rank|
     rank.resources :ordines
     rank.resources :familiae
     rank.resources :species, :except => [:index, :show]
   end
 
-  map.resources :species, :namespace => "taxonomy/", :as => :aves, :only => [:index, :show]
+  map.resources :species, :as => :aves, :only => [:index, :show]
 
   map.connect '/admin/k', :controller => "application", :action => "admin_login"
 

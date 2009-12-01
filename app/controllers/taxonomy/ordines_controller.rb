@@ -1,6 +1,2 @@
-module Taxonomy
-
-  class OrdinesController < TaxaController
-  end
-
+class OrdinesController < TaxaController
 end

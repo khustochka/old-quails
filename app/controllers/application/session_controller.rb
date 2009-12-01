@@ -4,7 +4,7 @@ module SessionController
     reset_session
     #session= {:expire_after => 1.year.from_now.to_s} #TODO: how to set valid session expiration?
     session[CONFIG[:admin_session_ask].to_sym] = CONFIG[:admin_session_reply]
-    #redirect_to :controller => 'taxonomy/ordines', :action => 'index'
+    #redirect_to :controller => 'ordines', :action => 'index'
     render :text => Time.zone.now().to_s
   end
 

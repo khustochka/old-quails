@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Taxonomy::OrdinesControllerTest < ActionController::TestCase
+class OrdinesControllerTest < ActionController::TestCase
 
   test "should get index" do
     get :index

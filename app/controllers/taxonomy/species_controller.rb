@@ -1,6 +1,2 @@
-module Taxonomy
-
-  class SpeciesController < TaxaController
-  end
-
+class SpeciesController < TaxaController
 end
