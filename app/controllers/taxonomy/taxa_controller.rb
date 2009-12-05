@@ -8,8 +8,10 @@ class TaxaController < ApplicationController
 
   helper :taxa
 
-  before_filter :find_taxon,  :only => [:show, :update, :destroy]
-  before_filter :find_all_taxa,  :only => [:index, :new, :show]
+  before_filter :find_taxon,  :only => [:update, :destroy]
+  before_filter :find_taxon_with_children,  :only => :show
+  before_filter :find_all_taxa,  :only => [:new, :show]
+  before_filter :prepare_hierarchy,  :only => :index
 
   rescue_from ActiveRecord::RecordInvalid, :with => :rescue_invalid_record
 
@@ -74,19 +76,33 @@ class TaxaController < ApplicationController
     end
   end
 
-
-#    def url_for(taxon)
-#      super( taxon.respond_to?(:supertaxon) ? [taxon.supertaxon, taxon] : taxon )
-#    end
-
   private
   def find_taxon
-    @taxon = model_class.find_by_name_la(params[:id])
-    admin404 if @taxon.nil?
+    @taxon = model_class.find_by_name_la!(params[:id])
+  end
+
+  def find_taxon_with_children
+    find_taxon
+    @bunch = @taxon.subtaxa
   end
 
   def find_all_taxa
-    @taxa = (!@taxon.nil? && @taxon.respond_to?(:supertaxon)) ? @taxon.supertaxon.subtaxa : model_class.all(:order => "sort") # todo: сомнительно
+    @taxa = (!@taxon.nil? && @taxon.respond_to?(:supertaxon)) ? @taxon.supertaxon.subtaxa : model_class.all(:order => "sort")
+  end
+
+  def prepare_hierarchy
+    @proceed_methods = []
+    initial_model = model_class
+    eager_load = nil
+
+    until initial_model == Ordo do
+      @proceed_methods.push(:subtaxa)
+      eager_load = eager_load.nil? ? :subtaxa : { :subtaxa => eager_load }
+      initial_model = initial_model.reflect_on_association(:supertaxon).klass
+    end
+
+    @bunch = Ordo.all(:order => "sort", :include => eager_load)
+
   end
 
   def rescue_invalid_record

@@ -3,7 +3,9 @@
 
 %h1
   = @taxon.name_la.if_true( "#{@taxon.name_ru} / <em>%s</em>", "#{action_name.humanize} #{model_name}")
-= render( :partial => "taxa/table", :locals => { :bunch => @taxon.subtaxa } ) if !@taxon.subtaxa.empty?
+
+= render( :partial => "taxa/table" )
+
 %h2
   Редактировать
 = render :partial => "taxa/form",  :locals => { :item => @taxon, :items => @taxa }

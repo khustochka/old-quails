@@ -6,6 +6,8 @@
 %h1
   Listing
   = model_name.pluralize
-= render :partial => "taxa/table", :locals => { :bunch => @taxa }
+
+= render :partial => "taxa/table"
+
 %br
 = link_to "Add new #{model_name}", :action => "new"
