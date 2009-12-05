@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :species, :as => :aves, :only => [:index, :show]
 
-  map.connect '/admin/k', :controller => "application", :action => "admin_login"
+  map.connect '/admin/k', :controller => "admin", :action => "dashboard"
 
   map.connect '/admin/*other', :controller => "application", :action => "admin404"
 

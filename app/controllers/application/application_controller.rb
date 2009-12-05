@@ -6,8 +6,6 @@ class ApplicationController < ActionController::Base
   include ErrorController
   include SessionController
 
-  before_filter :require_admin_auth, :only => :admin_login
-
   #helper :all # include all helpers, all the time
 
   protect_from_forgery # See ActionController::RequestForgeryProtection for details

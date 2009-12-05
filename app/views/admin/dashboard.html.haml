@@ -1,0 +1,41 @@
+- content_for :page_title, "Quails Admin Dashboard"
+
+%table.bordered
+  %tr
+    %td
+      %strong Current Time
+    %td= Date.today.strftime("%A, %-d %B %Y") + Time.zone.now.strftime(" %X (%Z)")
+
+  %tr
+    %td
+      %strong Rails version
+    %td= Rails.version
+
+  %tr
+    %td
+      %strong Application path
+    %td= Rails.root
+
+  %tr
+    %td
+      %strong Environment
+    %td= Rails.env
+
+-#  %tr
+-#    %td
+-#      %strong Latest commit
+-#    %td= link_to @last_commit, "http://github.com/khustochka/quails/commit/#{@last_commit}"
+-#
+-#  %tr
+-#    %td{:colspan => 2}
+-#      %strong= @head.message
+-#
+-#  %tr
+-#    %td
+-#      %strong Date
+-#    %td= @head.date.strftime("%A, %d %B %Y %X (%Z)")
+-#
+-#  %tr{:style => "color: #aaaaaa"}
+-#    %td  Uncommited
+-#    %td
+-#      %em= @is_clean
