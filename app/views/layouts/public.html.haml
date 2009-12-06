@@ -35,7 +35,7 @@
 
     = render :partial => "partials/header"
 
-    = yield :main_content || "<div id=\"main\">#{yield}</div>"
+    = (yield :main_content) || content_tag( :div, yield, :id => "main" )
 
     = render :partial => "partials/footer"
     
