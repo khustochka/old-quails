@@ -96,7 +96,7 @@ class TaxaController < ApplicationController
     eager_load = nil
 
     until initial_model == Ordo do
-      @proceed_methods.push(:subtaxa)
+      @proceed_methods.push( {:subtaxa => :parent_row} )
       eager_load = eager_load.nil? ? :subtaxa : { :subtaxa => eager_load }
       initial_model = initial_model.reflect_on_association(:supertaxon).klass
     end
