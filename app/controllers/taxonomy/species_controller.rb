@@ -26,5 +26,15 @@ class SpeciesController < TaxaController
     @taxon = model_class.find_by_name_la!(human_name)
     redirect_to :action => :show, :id => @taxon if @taxon.name_la.urlize != params[:id] 
   end
+
+  def prepare_hierarchy
+    super
+    unless @bunch.nil? or @bunch.empty?
+      @bunch.class.class_eval do
+        include Cleanup
+      end
+      @bunch.cleanup(@proceed_methods.dup)
+    end
+  end
   
 end

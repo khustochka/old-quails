@@ -1,5 +1,26 @@
 class TaxaController < ApplicationController
 
+  module Cleanup # used on Array of ActiveRecords
+    def cleanup(proceed_methods)
+      unless proceed_methods.nil? || proceed_methods.empty?
+        proceed_method = nil
+        proceed_methods.pop.each_key do |key|
+          proceed_method = key
+        end
+        self.reject! do |item|
+          children = item.send(proceed_method)
+          unless children.nil? || children.empty?
+          children.class.class_eval do
+            include Cleanup
+          end
+            children.cleanup(proceed_methods.dup)
+          end
+          children.nil? || children.empty?
+        end
+      end
+    end
+  end
+
   helper_method :url_for
 
   before_filter :require_admin
@@ -102,7 +123,6 @@ class TaxaController < ApplicationController
     end
 
     @bunch = Ordo.all(:order => "sort", :include => eager_load)
-
   end
 
   def rescue_invalid_record

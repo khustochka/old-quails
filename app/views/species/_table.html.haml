@@ -1,20 +1,15 @@
-- n = 0
-
 %table.bordered
   %tr
     %th.numeric №
     %th{ :colspan => 3 } Название
 
-  - if @bunch.nil? || @bunch.empty?
-    = no_data_row
-  - else
-    - hierarchy_cells(@bunch, @proceed_methods) do |item|
-      %tr
-        %td.numeric
-          = n += 1
-        %td
-          = link_to h(item.name_ru), {:id => item, :action => "show"}, :class => "taxon"
-        %td
-          %em.lat= h item.name_la
-        %td
-          = h item.authority
+  - hierarchy_cells(@bunch, @proceed_methods.dup) do |item|
+    %tr
+      %td.numeric
+        = counter_up :start_at => 1
+      %td
+        = link_to h(item.name_ru), {:id => item, :action => "show"}, :class => "taxon"
+      %td
+        %em.lat= h item.name_la
+      %td
+        = h item.authority
