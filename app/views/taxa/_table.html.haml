@@ -9,23 +9,26 @@
     %th Descr
     %th
       %em del
-  - hierarchy_cells(@bunch, @proceed_methods) do |item|
-    %tr
-      %td.numeric
-        = h item.sort
-      %td
-        = link_to h(item.name_la), item
-      %td
-        = h item.name_en
-      %td
-        = h item.name_ru
-      %td
-        = h item.name_uk
-      %td.boolean
-        = !item.synonims.empty? ? "+" : "-"
-      %td.boolean
-        = !item.description.empty? ? "+" : "-"
-      %td
-        [
-        = link_to 'x', item, :confirm => 'Are you sure?', :method => :delete
-        ]
+  - if @bunch.nil? || @bunch.empty?
+    = no_data_row
+  - else
+    - hierarchy_cells(@bunch, @proceed_methods) do |item|
+      %tr
+        %td.numeric
+          = h item.sort
+        %td
+          = link_to h(item.name_la), item
+        %td
+          = h item.name_en
+        %td
+          = h item.name_ru
+        %td
+          = h item.name_uk
+        %td.boolean
+          = !item.synonims.empty? ? "+" : "-"
+        %td.boolean
+          = !item.description.empty? ? "+" : "-"
+        %td
+          [
+          = link_to 'x', item, :confirm => 'Are you sure?', :method => :delete
+          ]

@@ -7,4 +7,8 @@ class Species < Taxon
 
   belongs_to :supertaxon, :class_name => "Familia", :foreign_key => "familia_id"
 
+  def to_param # overridden
+    name_la.urlize
+  end
+
 end

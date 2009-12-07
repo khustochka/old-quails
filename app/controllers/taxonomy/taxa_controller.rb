@@ -8,10 +8,10 @@ class TaxaController < ApplicationController
 
   helper :taxa
 
-  before_filter :find_taxon,  :only => [:update, :destroy]
-  before_filter :find_taxon_with_children,  :only => :show
-  before_filter :find_all_taxa,  :only => [:new, :show]
-  before_filter :prepare_hierarchy,  :only => :index
+  before_filter :find_taxon, :only => [:update, :destroy]
+  before_filter :find_taxon_with_children, :only => :show
+  before_filter :find_all_taxa, :only => [:new, :show]
+  before_filter :prepare_hierarchy, :only => :index
 
   rescue_from ActiveRecord::RecordInvalid, :with => :rescue_invalid_record
 
@@ -83,7 +83,7 @@ class TaxaController < ApplicationController
 
   def find_taxon_with_children
     find_taxon
-    @bunch = @taxon.subtaxa
+    @bunch = @taxon.subtaxa if @taxon.respond_to?(:subtaxa)
   end
 
   def find_all_taxa

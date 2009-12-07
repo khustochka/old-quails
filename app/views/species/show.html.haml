@@ -1,0 +1,6 @@
+- content_for :page_title, "#{@taxon.name_ru} (#{@taxon.name_la})" 
+
+%h2
+  = @taxon.name_ru
+
+%h3.lat= @taxon.name_la

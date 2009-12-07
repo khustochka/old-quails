@@ -22,10 +22,10 @@ module TaxaHelper
       end
       collection.each do |item|
         children = item.send(proceed_method)
-#        unless children.nil? || children.empty?
+        unless children.nil? || children.empty?
           concat(send(row_helper, item))
           hierarchy_cells(children, proceed_methods.dup, &block)
-#       end
+       end
       end
     end
   end

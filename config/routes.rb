@@ -8,11 +8,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :species, :as => :aves, :only => [:index, :show]
 
-  map.connect '/admin/k', :controller => "admin", :action => "dashboard"
+  map.connect '/admin/k', :controller => :admin, :action => :dashboard
 
-  map.connect '/admin/*other', :controller => "application", :action => "admin404"
+  map.connect '/admin/*other', :controller => :application, :action => :admin404
 
-#  map.connect 'aves/:id/edit', :controller => :services, :action => :redirect_to, :target_controller => :species, :target_action => :edit 
+  map.connect 'aves/:id/edit', :controller => :species, :action => :edit 
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -46,11 +46,11 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  map.root :controller => "application", :action => "public404"
+  map.root :controller => :root, :action => :root
 
 
   #map.page404 '/404', :controller => "services", :action => "public404"
-  map.connect '/*other', :controller => "application", :action => "public404"
+  map.connect '/*other', :controller => :application, :action => :public404
 
   # See how all your routes lay out with "rake routes"
 

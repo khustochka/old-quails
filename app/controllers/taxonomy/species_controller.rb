@@ -1,11 +1,30 @@
 class SpeciesController < TaxaController
 
   skip_before_filter :require_admin, :only => [:index, :show]
+  
+  before_filter :find_all_taxa, :only => [:new, :show, :edit]
 
   def index
     respond_to do |format|
-      format.html { render 'taxa/index', :layout => "public" }
+      format.html { render 'index', :layout => "public" }
       #format.xml  { render :xml => @taxa }
     end
   end
+
+  def show
+    render :layout => "panned"
+  end
+
+
+  def edit
+    render 'taxa/add_edit'
+  end
+
+  private
+  def find_taxon
+    human_name = params[:id].lat_humanize
+    @taxon = model_class.find_by_name_la!(human_name)
+    redirect_to :action => :show, :id => @taxon if @taxon.name_la.urlize != params[:id] 
+  end
+  
 end
