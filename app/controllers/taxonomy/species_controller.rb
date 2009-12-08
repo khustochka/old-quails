@@ -29,12 +29,7 @@ class SpeciesController < TaxaController
 
   def prepare_hierarchy
     super
-    unless @bunch.nil? or @bunch.empty?
-      @bunch.class.class_eval do
-        include Cleanup
-      end
-      @bunch.cleanup(@proceed_methods.dup)
-    end
+    @bunch.cleanup(@proceed_methods.dup)
   end
   
 end

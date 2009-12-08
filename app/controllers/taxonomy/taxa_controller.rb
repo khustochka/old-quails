@@ -1,21 +1,17 @@
 class TaxaController < ApplicationController
 
-  module Cleanup # used on Array of ActiveRecords
+  class ArrayOfRecords < Array
+    def nil_or_empty?
+      self.nil? || self.empty?
+    end
+
     def cleanup(proceed_methods)
-      unless proceed_methods.nil? || proceed_methods.empty?
-        proceed_method = nil
-        proceed_methods.pop.each_key do |key|
-          proceed_method = key
-        end
+      unless self.nil_or_empty? || proceed_methods.nil? || proceed_methods.empty?
+        proceed_method = proceed_methods.pop.keys.first
         self.reject! do |item|
-          children = item.send(proceed_method)
-          unless children.nil? || children.empty?
-          children.class.class_eval do
-            include Cleanup
-          end
-            children.cleanup(proceed_methods.dup)
-          end
-          children.nil? || children.empty?
+          children = ArrayOfRecords.new(item.send(proceed_method))
+          children.cleanup(proceed_methods.dup)
+          children.nil_or_empty?
         end
       end
     end
@@ -122,7 +118,7 @@ class TaxaController < ApplicationController
       initial_model = initial_model.reflect_on_association(:supertaxon).klass
     end
 
-    @bunch = Ordo.all(:order => "sort", :include => eager_load)
+    @bunch = ArrayOfRecords.new(Ordo.all(:order => "sort", :include => eager_load))
   end
 
   def rescue_invalid_record

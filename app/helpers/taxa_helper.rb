@@ -15,11 +15,7 @@ module TaxaHelper
         yield item
       end
     else
-      proceed_method = row_helper = nil
-      proceed_methods.pop.each_pair do |key, value|
-        proceed_method = key
-        row_helper = value
-      end
+      proceed_method, row_helper = proceed_methods.pop.to_a.first
       collection.each do |item|
         children = item.send(proceed_method)
         concat(send(row_helper, item))
