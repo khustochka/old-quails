@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(:version => 20090911193700) do
     t.integer "ordo_id",                                    :null => false
   end
 
-  add_index "familiae", ["name_la"], :name => "familiae_name_la"
-  add_index "familiae", ["ordo_id"], :name => "familiae_ordo_id"
-  add_index "familiae", ["sort"], :name => "familiae_sort"
+  add_index "familiae", ["name_la"], :name => "index_familiae_on_name_la"
+  add_index "familiae", ["ordo_id"], :name => "index_familiae_on_ordo_id"
+  add_index "familiae", ["sort"], :name => "index_familiae_on_sort"
 
   create_table "ordines", :force => true do |t|
     t.string  "name_la",     :limit => 128, :null => false
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(:version => 20090911193700) do
     t.integer "sort",                       :null => false
   end
 
-  add_index "ordines", ["name_la"], :name => "ordines_name_la"
-  add_index "ordines", ["sort"], :name => "ordines_sort"
+  add_index "ordines", ["name_la"], :name => "index_ordines_on_name_la"
+  add_index "ordines", ["sort"], :name => "index_ordines_on_sort"
 
   create_table "species", :force => true do |t|
     t.string  "code",           :limit => 6,                   :null => false
@@ -57,9 +57,9 @@ ActiveRecord::Schema.define(:version => 20090911193700) do
     t.string  "iucn_name_la"
   end
 
-  add_index "species", ["code"], :name => "species_code"
-  add_index "species", ["familia_id"], :name => "species_familia_id"
-  add_index "species", ["name_la"], :name => "species_name_la"
-  add_index "species", ["sort"], :name => "species_sort"
+  add_index "species", ["code"], :name => "index_species_on_code"
+  add_index "species", ["familia_id"], :name => "index_species_on_familia_id"
+  add_index "species", ["name_la"], :name => "index_species_on_name_la"
+  add_index "species", ["sort"], :name => "index_species_on_sort"
 
 end

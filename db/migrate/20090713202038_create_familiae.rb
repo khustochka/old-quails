@@ -11,9 +11,9 @@ class CreateFamiliae < ActiveRecord::Migration
       t.integer "ordo_id",                                    :null => false
     end
 
-    add_index "familiae", ["name_la"], :name => "familiae_name_la"
-    add_index "familiae", ["sort"], :name => "familiae_sort"
-    add_index "familiae", ["ordo_id"], :name => "familiae_ordo_id"
+    add_index "familiae", "name_la"
+    add_index "familiae", "sort"
+    add_index "familiae", "ordo_id"
   end
 
   def self.down

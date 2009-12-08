@@ -19,10 +19,10 @@ class CreateSpecies < ActiveRecord::Migration
 
     end
 
-    add_index "species", ["name_la"], :name => "species_name_la"
-    add_index "species", ["code"], :name => "species_code"
-    add_index "species", ["sort"], :name => "species_sort"
-    add_index "species", ["familia_id"], :name => "species_familia_id"
+    add_index "species", "name_la"
+    add_index "species", "code"
+    add_index "species", "sort"
+    add_index "species", "familia_id"
   end
 
   def self.down
