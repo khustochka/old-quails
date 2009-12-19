@@ -1,6 +1,6 @@
 module TaxaHelper
   def parent_row(item)
-    content_tag( :tr, ( content_tag( :td, content_tag(:strong, link_to( item.name_la, url_for(item) )), :colspan => 8 ))) + "\n"
+    content_tag( :tr, ( content_tag( :td, content_tag(:strong, link_to( item.name_la, item ), :colspan => 8 )))) + "\n"
   end
 
   def no_data_row

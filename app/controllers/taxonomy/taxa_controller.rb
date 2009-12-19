@@ -17,7 +17,9 @@ class TaxaController < ApplicationController
     end
   end
 
-  helper_method :url_for
+
+#  helper_method :url_for # this is to use controller methods as helpers in views 
+
 
   before_filter :require_admin
 
@@ -104,6 +106,7 @@ class TaxaController < ApplicationController
   end
 
   def find_all_taxa
+    @proceed_methods = []
     @taxa = (!@taxon.nil? && @taxon.respond_to?(:supertaxon)) ? @taxon.supertaxon.subtaxa : model_class.all(:order => "sort")
   end
 
