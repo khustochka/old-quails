@@ -69,7 +69,7 @@ class TaxaController < ApplicationController
     respond_to do |format|
       @taxon.insert_mind_sorting
       flash[:notice] = "#{model_name.humanize} was successfully created."
-      format.html { redirect_to @taxon, :action => 'edit' }
+      format.html { redirect_to @taxon, :action => :edit } # need to redirect to edit for species
       #format.xml  { render :xml => @taxon, :status => :created, :location => @taxon }
     end
   end
@@ -79,7 +79,7 @@ class TaxaController < ApplicationController
     respond_to do |format|
       @taxon.update_mind_sorting(params[model_sym])
       flash[:notice] = "#{model_name.humanize} was successfully updated."
-      format.html { redirect_to :action => "show", :id => @taxon }
+      format.html { redirect_to @taxon, :action => :edit } # need to redirect to edit for species
       #format.xml  { head :ok }
 
     end

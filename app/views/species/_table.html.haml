@@ -8,7 +8,7 @@
       %td.numeric
         = counter_up :start_at => 1
       %td
-        = link_to h(item.name_ru), {:id => item, :action => "show"}, :class => "taxon"
+        = link_to h(item.name_ru), item
       %td
         %em.lat= h item.name_la
       %td

@@ -24,7 +24,7 @@ class SpeciesController < TaxaController
   def find_taxon
     human_name = params[:id].lat_humanize
     @taxon = model_class.find_by_name_la!(human_name)
-    redirect_to :action => :show, :id => @taxon if @taxon.name_la.urlize != params[:id] 
+    redirect_to @taxon, :status => 301 if @taxon.name_la.urlize != params[:id] 
   end
 
   def prepare_hierarchy

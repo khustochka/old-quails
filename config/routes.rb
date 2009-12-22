@@ -1,12 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
 
+  map.resources :species, :as => :aves, :only => [:index, :show]
+
   map.with_options(:path_prefix => "/admin") do |rank|
     rank.resources :ordines
     rank.resources :familiae
     rank.resources :species, :except => [:index, :show]
   end
-
-  map.resources :species, :as => :aves, :only => [:index, :show]
 
   map.connect '/admin/k', :controller => :admin, :action => :dashboard
 
