@@ -18,8 +18,8 @@ module SessionController
   def require_admin_auth
     CONFIG[:open_access] ?
             true :
-            authenticate_or_request_with_http_basic do |username, password|
-              username == CONFIG[:admin_username] && Digest::SHA1.hexdigest(password) == CONFIG[:admin_password]
+            authenticate_or_request_with_http_basic do |user_name, password|
+              user_name == CONFIG[:admin_username] && password == CONFIG[:admin_password]
             end
   end
 end

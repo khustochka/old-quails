@@ -8,7 +8,7 @@ OPEN: &OPEN
 SAFE: &SAFE
   open_access:    false
   admin_username: admin
-  admin_password: f6be234e83759cf6a89d966bb096e7e9acd0f7d7 # pas3wort
+  admin_password:  # enter http authentication password here
   admin_session_ask: are_you_admin
   admin_session_reply: Yes,_of_course! # You may change this to something completely different
 

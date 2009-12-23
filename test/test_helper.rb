@@ -39,4 +39,12 @@ class ActiveSupport::TestCase
   def assert_sorting_preserved(klass)
     assert_equal( (1..klass.count).to_a, klass.all(:order => :sort).map {|item| item[:sort] }, "Sorting invalid" )
   end
+
+ 	def http_auth
+    unless CONFIG[:open_access]
+      session[CONFIG[:admin_session_ask].to_sym] = CONFIG[:admin_session_reply]
+      @request.env["HTTP_AUTHORIZATION"] = "Basic #{Base64.encode64("#{CONFIG[:admin_username]}:#{CONFIG[:admin_password]}")}"
+    end
+  end
+
 end
