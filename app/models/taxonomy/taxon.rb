@@ -5,19 +5,26 @@ class Taxon < ActiveRecord::Base
   validates_presence_of :name_la, :name_ru, :name_uk, :sort
   validates_uniqueness_of :name_la, :name_ru, :name_uk
 
-  def to_param # overridden
+  def to_param
     name_la
   end
 
   def insert_mind_sorting
+    latest = self.class.count + 1
+    self.sort = latest if self.sort > latest || self.sort == 0
     self.class.transaction do
-      self.class.update_all("sort = sort + 1", "sort >= #{self[:sort]}") # TODO: add verification of the parent id if necessary
+      self.class.update_all("sort = sort + 1", "sort >= #{self.sort}") # TODO: mind the scope
       save!
     end
   end
 
   def update_mind_sorting(attributes)
-    new_sort = attributes[:sort].to_i
+    latest = self.class.count
+    current = attributes[:sort].to_i
+    new_sort = attributes[:sort] =
+            current > latest || current == 0 ?
+                    latest :
+                    current
     old_sort = self[:sort].to_i
 
     self.class.transaction do
@@ -25,7 +32,7 @@ class Taxon < ActiveRecord::Base
         diff = (old_sort - new_sort) / (old_sort - new_sort).abs
         max_sort = [old_sort, new_sort - diff].max
         min_sort = [old_sort, new_sort - diff].min
-        self.class.update_all("sort = sort + (#{diff})", "sort > #{min_sort} AND sort < #{max_sort}")
+        self.class.update_all("sort = sort + (#{diff})", "sort > #{min_sort} AND sort < #{max_sort}") # TODO: mind the scope
       end
       update_attributes!(attributes)
     end
