@@ -7,8 +7,14 @@ class Species < Taxon
 
   belongs_to :supertaxon, :class_name => "Familia", :foreign_key => "familia_id"
 
-  def to_param # overridden
+  attr_reader :url
+
+  def to_param
     name_la.urlize
+  end
+
+  def after_find
+    @url = "/aves/#{to_param}" # TODO: generate url from route
   end
 
 end
