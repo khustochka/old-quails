@@ -21,6 +21,9 @@ production:
   session_key:    _quails_session
   # session_secret is not set: it will be generated
 
-test:
+test: &TEST
   <<: *DEFAULT
   <<: *SAFE
+
+cucumber:
+  <<: *TEST

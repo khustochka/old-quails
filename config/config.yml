@@ -9,7 +9,10 @@ production:
   <<: *DEFAULT
   site_header: quails.proj
 
-test:
+test: &TEST
   <<: *DEFAULT
   site_header: birdwatch.org.ua
+
+cucumber:
+  <<: *TEST
 

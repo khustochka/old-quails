@@ -8,8 +8,9 @@ class String
   end
 
   def slav_humanize
-    k = self.mb_chars.split
-    #.capitalize.to_s
+    full_name = self.split
+    full_name.push(full_name.shift)
+    full_name.join(" ").mb_chars.capitalize.to_s
   end
 
   def if_not_empty(mask, else_option = '')
