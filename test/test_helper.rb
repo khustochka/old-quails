@@ -37,7 +37,13 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 
   def assert_sorting_preserved(klass)
-    assert_equal( (1..klass.count).to_a, klass.all(:order => :sort).map {|item| item[:sort] }, "Sorting invalid" )
+    if klass.reflect_on_association(:supertaxon).nil?
+      assert_equal( (1..klass.count).to_a, klass.all(:order => :sort).map {|item| item[:sort] }, "Sorting invalid" )
+    else
+      klass.reflect_on_association(:supertaxon).klass.all(:order => :sort, :include => :subtaxa).each do |parent|
+        assert_equal( (1..parent.subtaxa.count).to_a, parent.subtaxa.map {|item| item[:sort] }, "Sorting invalid" )
+      end
+    end
   end
 
  	def http_auth
