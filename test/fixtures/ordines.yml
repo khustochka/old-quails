@@ -1,228 +1,6 @@
 --- 
-ordines_017: 
-  name_en: ""
-  synonims: ""
-  name_la: Caprimulgiformes
-  name_uk: !binary |
-    0JTRgNGW0LzQu9GO0LPQvtC/0L7QtNGW0LHQvdGW
-
-  name_ru: !binary |
-    0JrQvtC30L7QtNC+0LXQvtCx0YDQsNC30L3Ri9C1
-
-  id: "17"
-  description: ""
-  sort: "17"
-ordines_006: 
-  name_en: ""
-  synonims: ""
-  name_la: Phoenicopteriformes
-  name_uk: !binary |
-    0KTQu9Cw0LzRltC90LPQvtC/0L7QtNGW0LHQvdGW
-
-  name_ru: !binary |
-    0KTQu9Cw0LzQuNC90LPQvtC+0LHRgNCw0LfQvdGL0LU=
-
-  id: "6"
-  description: ""
-  sort: "6"
-ordines_018: 
-  name_en: ""
-  synonims: ""
-  name_la: Upupiformes
-  name_uk: !binary |
-    0J7QtNGD0LTQvtC/0L7QtNGW0LHQvdGW
-
-  name_ru: !binary |
-    0KPQtNC+0LTQvtC+0LHRgNCw0LfQvdGL0LU=
-
-  id: "18"
-  description: "\xD0\x98\xD0\xBD\xD0\xBE\xD0\xB3\xD0\xB4\xD0\xB0 \xD0\xB2\xD0\xBA\xD0\xBB\xD1\x8E\xD1\x87\xD0\xB0\xD1\x8E\xD1\x82\xD1\x81\xD1\x8F \xD0\xB2 \xD1\x81\xD0\xB5\xD0\xBC\xD0\xB5\xD0\xB9\xD1\x81\xD1\x82\xD0\xB2\xD0\xBE <a href=\"/aves/coraciiformes/\">\xD0\xA0\xD0\xB0\xD0\xBA\xD1\x88\xD0\xB5\xD0\xBE\xD0\xB1\xD1\x80\xD0\xB0\xD0\xB7\xD0\xBD\xD1\x8B\xD1\x85</a>."
-  sort: "18"
-ordines_007: 
-  name_en: ""
-  synonims: ""
-  name_la: Anseriformes
-  name_uk: !binary |
-    0JPRg9GB0LXQv9C+0LTRltCx0L3Rlg==
-
-  name_ru: !binary |
-    0JPRg9GB0LXQvtCx0YDQsNC30L3Ri9C1
-
-  id: "7"
-  description: ""
-  sort: "7"
-ordines_019: 
-  name_en: ""
-  synonims: ""
-  name_la: Coraciiformes
-  name_uk: !binary |
-    0KDQsNC60YjQtdC/0L7QtNGW0LHQvdGW
-
-  name_ru: !binary |
-    0KDQsNC60YjQtdC+0LHRgNCw0LfQvdGL0LU=
-
-  id: "19"
-  description: ""
-  sort: "19"
-ordines_008: 
-  name_en: ""
-  synonims: ""
-  name_la: Falconiformes
-  name_uk: !binary |
-    0KHQvtC60L7Qu9C+0L/QvtC00ZbQsdC90ZY=
-
-  name_ru: !binary |
-    0KHQvtC60L7Qu9C+0L7QsdGA0LDQt9C90YvQtQ==
-
-  id: "8"
-  description: ""
-  sort: "8"
-ordines_020: 
-  name_en: ""
-  synonims: ""
-  name_la: Piciformes
-  name_uk: !binary |
-    0JTRj9GC0LvQvtC/0L7QtNGW0LHQvdGW
-
-  name_ru: !binary |
-    0JTRj9GC0LvQvtC+0LHRgNCw0LfQvdGL0LU=
-
-  id: "20"
-  description: ""
-  sort: "20"
-ordines_009: 
-  name_en: ""
-  synonims: ""
-  name_la: Galiiformes
-  name_uk: !binary |
-    0JrRg9GA0L7Qv9C+0LTRltCx0L3Rlg==
-
-  name_ru: !binary |
-    0JrRg9GA0L7QvtCx0YDQsNC30L3Ri9C1
-
-  id: "9"
-  description: ""
-  sort: "9"
-ordines_021: 
-  name_en: ""
-  synonims: ""
-  name_la: Passeriformes
-  name_uk: !binary |
-    0JPQvtGA0L7QsdGG0LXQv9C+0LTRltCx0L3Rlg==
-
-  name_ru: !binary |
-    0JLQvtGA0L7QsdGM0LjQvdC+0L7QsdGA0LDQt9C90YvQtQ==
-
-  id: "21"
-  description: ""
-  sort: "21"
-ordines_010: 
-  name_en: ""
-  synonims: ""
-  name_la: Gruiformes
-  name_uk: !binary |
-    0JbRg9GA0LDQstC70LXQv9C+0LTRltCx0L3Rlg==
-
-  name_ru: !binary |
-    0JbRg9GA0LDQstC70LXQvtCx0YDQsNC30L3Ri9C1
-
-  id: "10"
-  description: ""
-  sort: "10"
-ordines_011: 
-  name_en: ""
-  synonims: ""
-  name_la: Charadriiformes
-  name_uk: !binary |
-    0KHQuNCy0LrQvtC/0L7QtNGW0LHQvdGW
-
-  name_ru: !binary |
-    0KDQttCw0L3QutC+0L7QsdGA0LDQt9C90YvQtQ==
-
-  id: "11"
-  description: ""
-  sort: "11"
-ordines_012: 
-  name_en: ""
-  synonims: ""
-  name_la: Columbiformes
-  name_uk: !binary |
-    0JPQvtC70YPQsdC+0L/QvtC00ZbQsdC90ZY=
-
-  name_ru: !binary |
-    0JPQvtC70YPQsdC10L7QsdGA0LDQt9C90YvQtQ==
-
-  id: "12"
-  description: ""
-  sort: "12"
-ordines_001: 
-  name_en: ""
-  synonims: ""
-  name_la: Gaviiformes
-  name_uk: !binary |
-    0JPQsNCz0LDRgNC+0L/QvtC00ZbQsdC90ZY=
-
-  name_ru: !binary |
-    0JPQsNCz0LDRgNC+0L7QsdGA0LDQt9C90YvQtQ==
-
-  id: "1"
-  description: ""
-  sort: "1"
-ordines_013: 
-  name_en: ""
-  synonims: ""
-  name_la: Cuculiformes
-  name_uk: !binary |
-    0JfQvtC30YPQu9C10L/QvtC00ZbQsdC90ZY=
-
-  name_ru: !binary |
-    0JrRg9C60YPRiNC60L7QvtCx0YDQsNC30L3Ri9C1
-
-  id: "13"
-  description: ""
-  sort: "13"
-ordines_002: 
-  name_en: ""
-  synonims: ""
-  name_la: Podicipediformes
-  name_uk: !binary |
-    0J/RltGA0L3QuNC60L7Qt9C+0L/QvtC00ZbQsdC90ZY=
-
-  name_ru: !binary |
-    0J/QvtCz0LDQvdC60L7QvtCx0YDQsNC30L3Ri9C1
-
-  id: "2"
-  description: ""
-  sort: "2"
-ordines_014: 
-  name_en: ""
-  synonims: ""
-  name_la: Psittaciformes
-  name_uk: !binary |
-    0J/QsNC/0YPQs9C+0L/QvtC00ZbQsdC90ZY=
-
-  name_ru: !binary |
-    0J/QvtC/0YPQs9Cw0LXQvtCx0YDQsNC30L3Ri9C1
-
-  id: "14"
-  description: ""
-  sort: "14"
-ordines_003: 
-  name_en: ""
-  synonims: ""
-  name_la: Procellariiformes
-  name_uk: !binary |
-    0JHRg9GA0LXQstGW0YHQvdC40LrQvtC/0L7QtNGW0LHQvdGW
-
-  name_ru: !binary |
-    0JHRg9GA0LXQstC10YHRgtC90LjQutC+0L7QsdGA0LDQt9C90YvQtQ==
-
-  id: "3"
-  description: ""
-  sort: "3"
 ordines_015: 
   name_en: ""
-  synonims: ""
   name_la: Strigiformes
   name_uk: !binary |
     0KHQvtCy0L7Qv9C+0LTRltCx0L3Rlg==
@@ -231,11 +9,11 @@ ordines_015:
     0KHQvtCy0L7QvtCx0YDQsNC30L3Ri9C1
 
   id: "15"
-  description: ""
   sort: "15"
+  description: ""
+  synonims: ""
 ordines_004: 
   name_en: ""
-  synonims: ""
   name_la: Pelecaniformes
   name_uk: !binary |
     0J/QtdC70ZbQutCw0L3QvtC/0L7QtNGW0LHQvdGW
@@ -244,11 +22,11 @@ ordines_004:
     0J/QtdC70LjQutCw0L3QvtC+0LHRgNCw0LfQvdGL0LU=
 
   id: "4"
-  description: ""
   sort: "4"
+  description: ""
+  synonims: ""
 ordines_016: 
   name_en: ""
-  synonims: ""
   name_la: Apodiformes
   name_uk: !binary |
     0KHQtdGA0L/QvtC60YDQuNC70YzRhtC10L/QvtC00ZbQsdC90ZY=
@@ -257,11 +35,11 @@ ordines_016:
     0KHRgtGA0LjQttC10L7QsdGA0LDQt9C90YvQtQ==
 
   id: "16"
-  description: ""
   sort: "16"
+  description: ""
+  synonims: ""
 ordines_005: 
   name_en: ""
-  synonims: "\xD0\x93\xD0\xBE\xD0\xBB\xD0\xB5\xD0\xBD\xD0\xB0\xD1\x81\xD1\x82\xD1\x8B\xD0\xB5, \xD0\x93\xD0\xBE\xD0\xBB\xD0\xB5\xD0\xBD\xD0\xB0\xD1\x81\xD1\x82\xD1\x96"
   name_la: Ciconiiformes
   name_uk: !binary |
     0JvQtdC70LXQutC+0L/QvtC00ZbQsdC90ZY=
@@ -270,5 +48,233 @@ ordines_005:
     0JDQuNGB0YLQvtC+0LHRgNCw0LfQvdGL0LU=
 
   id: "5"
-  description: ""
   sort: "5"
+  description: ""
+  synonims: !binary |
+    0JPQvtC70LXQvdCw0YHRgtGL0LUsINCT0L7Qu9C10L3QsNGB0YLRlg==
+
+ordines_017: 
+  name_en: ""
+  name_la: Caprimulgiformes
+  name_uk: !binary |
+    0JTRgNGW0LzQu9GO0LPQvtC/0L7QtNGW0LHQvdGW
+
+  name_ru: !binary |
+    0JrQvtC30L7QtNC+0LXQvtCx0YDQsNC30L3Ri9C1
+
+  id: "17"
+  sort: "17"
+  description: ""
+  synonims: ""
+ordines_006: 
+  name_en: ""
+  name_la: Phoenicopteriformes
+  name_uk: !binary |
+    0KTQu9Cw0LzRltC90LPQvtC/0L7QtNGW0LHQvdGW
+
+  name_ru: !binary |
+    0KTQu9Cw0LzQuNC90LPQvtC+0LHRgNCw0LfQvdGL0LU=
+
+  id: "6"
+  sort: "6"
+  description: ""
+  synonims: ""
+ordines_018: 
+  name_en: ""
+  name_la: Upupiformes
+  name_uk: !binary |
+    0J7QtNGD0LTQvtC/0L7QtNGW0LHQvdGW
+
+  name_ru: !binary |
+    0KPQtNC+0LTQvtC+0LHRgNCw0LfQvdGL0LU=
+
+  id: "18"
+  sort: "18"
+  description: !binary |
+    0JjQvdC+0LPQtNCwINCy0LrQu9GO0YfQsNGO0YLRgdGPINCyINGB0LXQvNC1
+    0LnRgdGC0LLQviA8YSBocmVmPSIvYXZlcy9jb3JhY2lpZm9ybWVzLyI+0KDQ
+    sNC60YjQtdC+0LHRgNCw0LfQvdGL0YU8L2E+Lg==
+
+  synonims: ""
+ordines_007: 
+  name_en: ""
+  name_la: Anseriformes
+  name_uk: !binary |
+    0JPRg9GB0LXQv9C+0LTRltCx0L3Rlg==
+
+  name_ru: !binary |
+    0JPRg9GB0LXQvtCx0YDQsNC30L3Ri9C1
+
+  id: "7"
+  sort: "7"
+  description: ""
+  synonims: ""
+ordines_019: 
+  name_en: ""
+  name_la: Coraciiformes
+  name_uk: !binary |
+    0KDQsNC60YjQtdC/0L7QtNGW0LHQvdGW
+
+  name_ru: !binary |
+    0KDQsNC60YjQtdC+0LHRgNCw0LfQvdGL0LU=
+
+  id: "19"
+  sort: "19"
+  description: ""
+  synonims: ""
+ordines_008: 
+  name_en: ""
+  name_la: Falconiformes
+  name_uk: !binary |
+    0KHQvtC60L7Qu9C+0L/QvtC00ZbQsdC90ZY=
+
+  name_ru: !binary |
+    0KHQvtC60L7Qu9C+0L7QsdGA0LDQt9C90YvQtQ==
+
+  id: "8"
+  sort: "8"
+  description: ""
+  synonims: ""
+ordines_020: 
+  name_en: ""
+  name_la: Piciformes
+  name_uk: !binary |
+    0JTRj9GC0LvQvtC/0L7QtNGW0LHQvdGW
+
+  name_ru: !binary |
+    0JTRj9GC0LvQvtC+0LHRgNCw0LfQvdGL0LU=
+
+  id: "20"
+  sort: "20"
+  description: ""
+  synonims: ""
+ordines_009: 
+  name_en: ""
+  name_la: Galiiformes
+  name_uk: !binary |
+    0JrRg9GA0L7Qv9C+0LTRltCx0L3Rlg==
+
+  name_ru: !binary |
+    0JrRg9GA0L7QvtCx0YDQsNC30L3Ri9C1
+
+  id: "9"
+  sort: "9"
+  description: ""
+  synonims: ""
+ordines_021: 
+  name_en: ""
+  name_la: Passeriformes
+  name_uk: !binary |
+    0JPQvtGA0L7QsdGG0LXQv9C+0LTRltCx0L3Rlg==
+
+  name_ru: !binary |
+    0JLQvtGA0L7QsdGM0LjQvdC+0L7QsdGA0LDQt9C90YvQtQ==
+
+  id: "21"
+  sort: "21"
+  description: ""
+  synonims: ""
+ordines_010: 
+  name_en: ""
+  name_la: Gruiformes
+  name_uk: !binary |
+    0JbRg9GA0LDQstC70LXQv9C+0LTRltCx0L3Rlg==
+
+  name_ru: !binary |
+    0JbRg9GA0LDQstC70LXQvtCx0YDQsNC30L3Ri9C1
+
+  id: "10"
+  sort: "10"
+  description: ""
+  synonims: ""
+ordines_011: 
+  name_en: ""
+  name_la: Charadriiformes
+  name_uk: !binary |
+    0KHQuNCy0LrQvtC/0L7QtNGW0LHQvdGW
+
+  name_ru: !binary |
+    0KDQttCw0L3QutC+0L7QsdGA0LDQt9C90YvQtQ==
+
+  id: "11"
+  sort: "11"
+  description: ""
+  synonims: ""
+ordines_012: 
+  name_en: ""
+  name_la: Columbiformes
+  name_uk: !binary |
+    0JPQvtC70YPQsdC+0L/QvtC00ZbQsdC90ZY=
+
+  name_ru: !binary |
+    0JPQvtC70YPQsdC10L7QsdGA0LDQt9C90YvQtQ==
+
+  id: "12"
+  sort: "12"
+  description: ""
+  synonims: ""
+ordines_001: 
+  name_en: ""
+  name_la: Gaviiformes
+  name_uk: !binary |
+    0JPQsNCz0LDRgNC+0L/QvtC00ZbQsdC90ZY=
+
+  name_ru: !binary |
+    0JPQsNCz0LDRgNC+0L7QsdGA0LDQt9C90YvQtQ==
+
+  id: "1"
+  sort: "1"
+  description: ""
+  synonims: ""
+ordines_013: 
+  name_en: ""
+  name_la: Cuculiformes
+  name_uk: !binary |
+    0JfQvtC30YPQu9C10L/QvtC00ZbQsdC90ZY=
+
+  name_ru: !binary |
+    0JrRg9C60YPRiNC60L7QvtCx0YDQsNC30L3Ri9C1
+
+  id: "13"
+  sort: "13"
+  description: ""
+  synonims: ""
+ordines_002: 
+  name_en: ""
+  name_la: Podicipediformes
+  name_uk: !binary |
+    0J/RltGA0L3QuNC60L7Qt9C+0L/QvtC00ZbQsdC90ZY=
+
+  name_ru: !binary |
+    0J/QvtCz0LDQvdC60L7QvtCx0YDQsNC30L3Ri9C1
+
+  id: "2"
+  sort: "2"
+  description: ""
+  synonims: ""
+ordines_014: 
+  name_en: ""
+  name_la: Psittaciformes
+  name_uk: !binary |
+    0J/QsNC/0YPQs9C+0L/QvtC00ZbQsdC90ZY=
+
+  name_ru: !binary |
+    0J/QvtC/0YPQs9Cw0LXQvtCx0YDQsNC30L3Ri9C1
+
+  id: "14"
+  sort: "14"
+  description: ""
+  synonims: ""
+ordines_003: 
+  name_en: ""
+  name_la: Procellariiformes
+  name_uk: !binary |
+    0JHRg9GA0LXQstGW0YHQvdC40LrQvtC/0L7QtNGW0LHQvdGW
+
+  name_ru: !binary |
+    0JHRg9GA0LXQstC10YHRgtC90LjQutC+0L7QsdGA0LDQt9C90YvQtQ==
+
+  id: "3"
+  sort: "3"
+  description: ""
+  synonims: ""

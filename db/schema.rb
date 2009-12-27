@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20091224161706) do
   end
 
   add_index "familiae", ["name_la"], :name => "index_familiae_on_name_la"
-  add_index "familiae", ["ordo_id", "sort"], :name => "index_familiae_on_ordo_id_and_sort", :unique => true
+  add_index "familiae", ["ordo_id", "sort"], :name => "index_familiae_on_ordo_id_and_sort"
 
   create_table "ordines", :force => true do |t|
     t.string  "name_la",     :limit => 128, :null => false
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20091224161706) do
   end
 
   add_index "species", ["code"], :name => "index_species_on_code"
-  add_index "species", ["familia_id", "sort"], :name => "index_species_on_familia_id_and_sort", :unique => true
+  add_index "species", ["familia_id", "sort"], :name => "index_species_on_familia_id_and_sort"
   add_index "species", ["name_la"], :name => "index_species_on_name_la"
 
 end
