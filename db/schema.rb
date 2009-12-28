@@ -9,30 +9,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091224161706) do
+ActiveRecord::Schema.define(:version => 20091228103624) do
 
   create_table "familiae", :force => true do |t|
-    t.string  "name_la",     :limit => 128, :default => "", :null => false
-    t.string  "name_en",     :limit => 128
-    t.string  "name_ru",     :limit => 128, :default => "", :null => false
-    t.string  "name_uk",     :limit => 128, :default => "", :null => false
+    t.string  "name_la",       :limit => 128, :default => "", :null => false
+    t.string  "name_en",       :limit => 128
+    t.string  "name_ru",       :limit => 128, :default => "", :null => false
+    t.string  "name_uk",       :limit => 128, :default => "", :null => false
     t.text    "description"
-    t.string  "synonims",    :limit => 256
-    t.integer "sort",                                       :null => false
-    t.integer "ordo_id",                                    :null => false
+    t.string  "synonims",      :limit => 256
+    t.integer "sort",                                         :null => false
+    t.integer "ordo_id",                                      :null => false
+    t.integer "species_count",                :default => 0,  :null => false
   end
 
   add_index "familiae", ["name_la"], :name => "index_familiae_on_name_la"
   add_index "familiae", ["ordo_id", "sort"], :name => "index_familiae_on_ordo_id_and_sort"
 
   create_table "ordines", :force => true do |t|
-    t.string  "name_la",     :limit => 128, :null => false
-    t.string  "name_en",     :limit => 128
-    t.string  "name_ru",     :limit => 128, :null => false
-    t.string  "name_uk",     :limit => 128, :null => false
+    t.string  "name_la",        :limit => 128,                :null => false
+    t.string  "name_en",        :limit => 128
+    t.string  "name_ru",        :limit => 128,                :null => false
+    t.string  "name_uk",        :limit => 128,                :null => false
     t.text    "description"
-    t.string  "synonims",    :limit => 256
-    t.integer "sort",                       :null => false
+    t.string  "synonims",       :limit => 256
+    t.integer "sort",                                         :null => false
+    t.integer "familiae_count",                :default => 0, :null => false
   end
 
   add_index "ordines", ["name_la"], :name => "index_ordines_on_name_la"

@@ -5,7 +5,7 @@ class Species < Taxon
   validates_uniqueness_of :code
   validates_uniqueness_of :sort, :scope => :familia_id
 
-  belongs_to :supertaxon, :class_name => "Familia", :foreign_key => "familia_id"
+  belongs_to :supertaxon, :class_name => "Familia", :foreign_key => "familia_id", :counter_cache => true
 
   attr_reader :url
 
