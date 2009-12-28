@@ -49,7 +49,7 @@ class TaxaController < ApplicationController
 
 
   def new
-    @taxon = model_class.new(:sort => @taxa.size+1)
+    @taxon = model_class.new(:sort => @taxa.size + 1)
 
     respond_to do |format|
       format.html { render 'taxa/add_edit' }

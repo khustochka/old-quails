@@ -18,7 +18,7 @@ class Taxon < ActiveRecord::Base
     latest = (self.respond_to?(:supertaxon) ? self.supertaxon.subtaxa.count : self.class.count) + 1
     self.sort = latest if self.sort > latest || self.sort == 0
     self.class.transaction do
-      self.class.update_all("sort = sort + 1", "sort >= #{self.sort}" + scope) # TODO: mind the scope
+      self.class.update_all("sort = sort + 1", "sort >= #{self.sort}" + scope)
       save!
     end
   end
@@ -42,7 +42,7 @@ class Taxon < ActiveRecord::Base
         diff = (old_sort - new_sort) / (old_sort - new_sort).abs
         max_sort = [old_sort, new_sort - diff].max
         min_sort = [old_sort, new_sort - diff].min
-        self.class.update_all("sort = sort + (#{diff})", "sort > #{min_sort} AND sort < #{max_sort}" + scope) # TODO: mind the scope
+        self.class.update_all("sort = sort + (#{diff})", "sort > #{min_sort} AND sort < #{max_sort}" + scope)
       end
       update_attributes!(attributes)
     end
