@@ -5,6 +5,21 @@ class Taxon < ActiveRecord::Base
   validates_presence_of :name_la, :name_ru, :name_uk, :sort
   validates_uniqueness_of :name_la, :name_ru, :name_uk
 
+  def self.prepare_hierarchy
+    proceed_methods = []
+    initial_model = self
+    eager_load = nil
+
+    while initial_model.reflect_on_association(:supertaxon) do
+      proceed_methods.push( {:subtaxa => :parent_row} )
+      eager_load = eager_load.nil? ? :subtaxa : { :subtaxa => eager_load }
+      initial_model = initial_model.reflect_on_association(:supertaxon).klass
+    end
+
+    [initial_model.all(:include => eager_load, :order => "sort"),
+     proceed_methods]
+  end
+
   def to_param
     name_la
   end

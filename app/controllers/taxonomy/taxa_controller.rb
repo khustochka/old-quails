@@ -18,7 +18,7 @@ class TaxaController < ApplicationController
   end
 
 
-#  helper_method :url_for # this is to use controller methods as helpers in views 
+#  helper_method :url_for # this is to use controller methods as helpers in views
 
 
   before_filter :require_admin
@@ -111,17 +111,8 @@ class TaxaController < ApplicationController
   end
 
   def prepare_hierarchy
-    @proceed_methods = []
-    initial_model = model_class
-    eager_load = nil
-
-    until initial_model == Ordo do
-      @proceed_methods.push( {:subtaxa => :parent_row} )
-      eager_load = eager_load.nil? ? :subtaxa : { :subtaxa => eager_load }
-      initial_model = initial_model.reflect_on_association(:supertaxon).klass
-    end
-
-    @bunch = ArrayOfRecords.new(Ordo.all(:order => "sort", :include => eager_load))
+    @bunch, @proceed_methods = model_class.prepare_hierarchy
+    @bunch = ArrayOfRecords.new(@bunch)
   end
 
   def rescue_invalid_record
