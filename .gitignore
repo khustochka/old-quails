@@ -6,4 +6,5 @@ config/admin_config.yml
 db/data.yml
 log/*.log
 tmp/**/*
+rerun.txt
 *~

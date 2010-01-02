@@ -20,6 +20,13 @@ begin
       t.profile = 'default'
     end
 
+    # If using in RubyMine do not attach test runner UI to Cucumber - it will use default profile
+    Cucumber::Rake::Task.new({:rerun => 'db:test:prepare'}, 'Rerun the features previously failed (if any)') do |t|
+      t.binary = vendored_cucumber_bin
+      t.fork = true # You may get faster startup if you set this to false
+      t.profile = 'rerun'
+    end
+
     Cucumber::Rake::Task.new({:wip => 'db:test:prepare'}, 'Run features that are being worked on') do |t|
       t.binary = vendored_cucumber_bin
       t.fork = true # You may get faster startup if you set this to false
