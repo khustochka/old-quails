@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
     rank.resources :species, :except => [:index, :show]
   end
 
-  map.connect '/admin/k', :controller => :admin, :action => :dashboard
+  map.connect "/admin/#{CONFIG[:admin_dashboard]}", :controller => :admin, :action => :dashboard
 
   map.connect '/admin/*other', :controller => :application, :action => :admin404
 
