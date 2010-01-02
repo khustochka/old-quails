@@ -10,6 +10,10 @@ require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "pat
 # Commonly used webrat steps
 # http://github.com/brynary/webrat
 
+Given /^logged as "([^"]*)" with password "(.*)"$/ do |user_name, password|
+  basic_auth(user_name, password) 
+end
+
 Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
 end
@@ -252,6 +256,14 @@ Then /^(?:|I )should be on (.+)$/ do |page_name|
   else
     assert_equal path_to(page_name), URI.parse(current_url).path
   end
+end
+
+Then /^I should see 404 status page$/ do
+  Then 'I should get "404 Not Found" response status'
+end
+
+Then /^I should get "([^"]*)" response status$/ do |status_string|
+  response.status.should == status_string
 end
 
 Then /^show me the page$/ do

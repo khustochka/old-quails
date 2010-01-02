@@ -10,12 +10,18 @@ module NavigationHelpers
     
     when /the home\s?page/
       '/'
-    
-    # Add more mappings here.
-    # Here is an example that pulls values out of the Regexp:
-    #
-    #   when /^(.*)'s profile page$/i
-    #     user_profile_path(User.find_by_login($1))
+
+    when /Admin dashboard/
+      "/admin/#{CONFIG[:admin_dashboard]}"
+
+    when /(Ordines|Familiae) Index/
+      "/admin/#{$1.downcase}"
+
+    when /New (Ordo|Familia|Species) page/
+      "/admin/#{$1.downcase}/new"
+
+    when /'([^']*)'/
+      $1
 
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
