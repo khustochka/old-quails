@@ -25,7 +25,11 @@ production:
 
 test: &TEST
   <<: *DEFAULT
-  <<: *SAFE
+  open_access:    false
+  admin_username: admin
+  admin_password:  secret2pwd
+  admin_session_ask: are_you_admin
+  admin_session_reply: Yes,_of_course!
 
 cucumber:
   <<: *TEST

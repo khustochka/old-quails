@@ -142,6 +142,10 @@ When /^(?:|I )attach the file "([^\"]*)" to "([^\"]*)"$/ do |path, field|
   attach_file(field, path, type)
 end
 
+When /I post the following to '(.*)':/ do |url, table|
+  post url, table.rows_hash
+end
+
 Then /^(?:|I )should see "([^\"]*)"$/ do |text|
   if defined?(Spec::Rails::Matchers)
     response.should contain(text)
