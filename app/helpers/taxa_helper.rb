@@ -8,9 +8,9 @@ module TaxaHelper
   end
 
   def hierarchy_cells(collection, proceed_methods = [], &block)
-    if collection.nil? || collection.empty?
+    if collection.blank?
       concat(no_data_row)
-    elsif proceed_methods.nil? || proceed_methods.empty?
+    elsif proceed_methods.blank?
       collection.each do |item|
         yield item
       end

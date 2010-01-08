@@ -1,17 +1,13 @@
 class TaxaController < ApplicationController
 
   class ArrayOfRecords < Array
-    def nil_or_empty?
-      self.nil? || self.empty?
-    end
-
     def cleanup(proceed_methods)
-      unless self.nil_or_empty? || proceed_methods.nil? || proceed_methods.empty?
+      unless self.blank? || proceed_methods.blank?
         proceed_method = proceed_methods.pop.keys.first
         self.reject! do |item|
           children = ArrayOfRecords.new(item.send(proceed_method))
           children.cleanup(proceed_methods.dup)
-          children.nil_or_empty?
+          children.blank?
         end
       end
     end
