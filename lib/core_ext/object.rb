@@ -9,7 +9,11 @@ class Object
         self
       end
     else
-      raise
+      self
     end
+  end
+
+  def if_present!(value = nil, &block)
+    raise "Object not present (nil, false, or empty)." if if_present(value, &block).blank?
   end
 end

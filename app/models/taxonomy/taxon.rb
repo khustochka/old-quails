@@ -6,7 +6,7 @@ class Taxon < ActiveRecord::Base
   validates_uniqueness_of :name_la, :name_ru, :name_uk
 
   # Class methods
-  
+
   def self.prepare_hierarchy
     proceed_methods = []
     initial_model = self
@@ -23,9 +23,13 @@ class Taxon < ActiveRecord::Base
   end
 
   # Instance methods
-  
+
   def to_param
     name_la
+  end
+
+  def name
+    send("name_#{I18n.locale}")
   end
 
   def insert_mind_sorting
