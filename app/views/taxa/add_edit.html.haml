@@ -1,8 +1,8 @@
 - content_for :page_title do
-  = @taxon.name_la.if_true( "#{model_name.capitalize} %s", "#{action_name.humanize} #{model_name}")
+  = @taxon.name_la.if_present {|s| "#{model_name.capitalize} #{s}"} rescue "#{action_name.humanize} #{model_name}"
 
 %h1
-  = @taxon.name_la.if_true( "#{@taxon.name_ru} / <em>%s</em>", "#{action_name.humanize} #{model_name}")
+  = @taxon.name_la.if_present {|s| "#{@taxon.name_ru} / #{content_tag :em, s}"} rescue "#{action_name.humanize} #{model_name}"
 
 = render( :partial => "taxa/table" )
 

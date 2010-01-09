@@ -12,8 +12,4 @@ class String
     full_name.push(full_name.shift)
     full_name.join(" ").mb_chars.capitalize.to_s
   end
-
-  def if_not_empty(mask, else_option = '')
-    self.empty? ? else_option : mask.gsub(/\%s/, self)
-  end
 end
