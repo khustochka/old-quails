@@ -1,5 +1,7 @@
 class Taxon < ActiveRecord::Base
 
+  include ActiveRecord::SortedHierarchy 
+
   self.abstract_class = true
 
   validates_presence_of :name_la, :name_ru, :name_uk, :sort

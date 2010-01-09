@@ -10,3 +10,7 @@ end
 %w(base helpers).each do |inc_ext|
   require File.join(Rails.root, "lib/rails_ext/action_view/#{inc_ext}")
 end
+
+%w(sorted_hierarchy).each do |inc_ext|
+  require File.join(Rails.root, "lib/rails_ext/sorted_hierarchy/#{inc_ext}")
+end
