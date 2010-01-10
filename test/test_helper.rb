@@ -37,12 +37,11 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 
   def assert_sorting_preserved(klass)
-    if klass.reflect_on_association(klass.parent_assoc).nil?
+    if klass.top_level?
       assert_equal( (1..klass.count).to_a, klass.all(:order => :sort).map {|item| item[:sort] }, "Sorting invalid" )
     else
-      parent_class = klass.reflect_on_association(klass.parent_assoc).klass
-      parent_class.all(:order => :sort, :include => parent_class.children_assoc).each do |parent|
-        assert_equal( (1..parent.send(parent_class.children_assoc).count).to_a, parent.send(parent_class.children_assoc).map {|item| item[:sort] }, "Sorting invalid" )
+      klass.reflect_on_association(:parent).klass.all(:order => :sort, :include => :children).each do |parent|
+        assert_equal( (1..parent.children.size).to_a, parent.children.map {|item| item[:sort] }, "Sorting invalid" )
       end
     end
   end

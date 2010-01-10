@@ -98,12 +98,12 @@ class TaxaController < ApplicationController
 
   def find_taxon_with_children
     find_taxon
-    @bunch = @taxon.subtaxa if @taxon.respond_to?(:subtaxa)
+    @bunch = @taxon.children if @taxon.respond_to?(:children)
   end
 
   def find_all_taxa
     @proceed_methods = []
-    @taxa = (!@taxon.nil? && @taxon.respond_to?(:supertaxon)) ? @taxon.supertaxon.subtaxa : model_class.all(:order => "sort")
+    @taxa = (!@taxon.nil? && @taxon.respond_to?(:parent)) ? @taxon.parent.children : model_class.all(:order => "sort")
   end
 
   def prepare_hierarchy

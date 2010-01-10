@@ -65,7 +65,7 @@ class LegacyTask
       fam_num = 0
       order.families.each do |family|
       puts "   - Saving family #{family[:fam_la]}"
-        familia = ordo.subtaxa.create!(
+        familia = ordo.familiae.create!(
                 :name_la => family[:fam_la],
                 :name_en => family[:fam_en],
                 :name_ru => Utils.enconv(family[:fam_ru]),
@@ -77,7 +77,7 @@ class LegacyTask
           sp_num = 0
           family.species.each do |sp|
           puts "     - Saving species #{sp[:sp_la]}"
-            species = familia.subtaxa.create!(
+            species = familia.species.create!(
                     :code => sp[:sp_id],
                     :name_la => sp[:sp_la],
                     :authority => sp[:sp_prim], 
