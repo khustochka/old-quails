@@ -1,10 +1,13 @@
+- @page_header = capture do
+  = @taxon.new_record? ? "#{action_name.humanize} #{model_name}" : "#{@taxon.name.if_present {|s2| "#{s2} / "}}#{content_tag :em, @taxon.name_la}"
+
 - content_for :page_title do
-  = @taxon.name_la.if_present! {|s| "#{model_name.capitalize} #{s}"} rescue "#{action_name.humanize} #{model_name}"
+  = strip_tags @page_header
 
 %h1
-  = @taxon.name_la.if_present! {|s| "#{@taxon.name.if_present {|s2| "#{s2} / "}}#{content_tag :em, s}"} rescue "#{action_name.humanize} #{model_name}"
+  = @page_header
 
-= render( :partial => "taxa/table" )
+= render( :partial => "taxa/table" ) unless @taxon.bottom_level? || @taxon.new_record?
 
 %h2
   Редактировать
