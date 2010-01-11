@@ -14,10 +14,10 @@ class Taxon < ActiveRecord::Base
     initial_model = self
     eager_load = nil
 
-    while initial_model.reflect_on_association(:parent) do
+    until initial_model.top_level? do
       proceed_methods.push( {:children => :parent_row} )
       eager_load = eager_load.nil? ? :children : { :children => eager_load }
-      initial_model = initial_model.reflect_on_association(:parent).klass
+      initial_model = initial_model.parent_class
     end
 
     [initial_model.all(:include => eager_load, :order => "sort"),
