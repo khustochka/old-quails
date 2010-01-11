@@ -14,6 +14,6 @@ class Object
   end
 
   def if_present!(value = nil, &block)
-    raise "Object not present (nil, false, or empty)." if if_present(value, &block).blank?
+    (result = if_present(value, &block)).blank? ? raise("Object not present (nil, false, or empty).") : result
   end
 end

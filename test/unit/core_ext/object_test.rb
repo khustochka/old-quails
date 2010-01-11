@@ -5,7 +5,11 @@ class ObjectTest < ActiveSupport::TestCase
     # success tests
     assert_equal "Цаплевые", "Цаплевые".if_present
     assert_equal "<b>Цаплевые</b>", "Цаплевые".if_present { |val| "<b>#{val}</b>" }
-    temp = true.if_present("true") rescue "empty"
+    temp = true.if_present("true")
+    assert_equal "true", temp
+    assert_equal "Цаплевые", "Цаплевые".if_present!
+    assert_equal "<b>Цаплевые</b>", "Цаплевые".if_present! { |val| "<b>#{val}</b>" }
+    temp = true.if_present!("true") rescue "empty"
     assert_equal "true", temp
 
     # failure tests
