@@ -25,6 +25,14 @@ module ActiveRecord
         end
       end
 
+      def set_sort_column(value)
+        white_inheritable_attribute(:sort_column, value.to_sym)
+      end
+
+      def get_sort_column
+        read_inheritable_attribute(:sort_column) || :sort
+      end
+
       def top_level?
         !read_inheritable_attribute(:reflections).has_key?(:parent)
       end
@@ -45,6 +53,10 @@ module ActiveRecord
       end
     end
 
+    def get_sort_column
+      self.class.get_sort_column
+    end
+
     def top_level?
       self.class.top_level?
     end
@@ -55,43 +67,43 @@ module ActiveRecord
 
     def insert_mind_sorting
       latest = (self.top_level? ? self.class.count : self.parent.children.size) + 1
-      self.sort = latest if self.sort > latest || self.sort == 0
-      conditions = ["sort >= #{self.sort}"]
+      self[get_sort_column] = latest if self[get_sort_column] > latest || self[get_sort_column] == 0
+      conditions = ["#{get_sort_column} >= #{self[get_sort_column]}"]
       conditions.push(scope_condition) unless self.top_level?
       self.class.transaction do
-        self.class.update_all("sort = sort + 1", conditions.join(" AND "))
+        self.class.update_all("#{get_sort_column} = #{get_sort_column} + 1", conditions.join(" AND "))
         save!
       end
     end
 
     def update_mind_sorting(attributes)
       latest = self.top_level? ? self.class.count : self.parent.children.size
-      current = attributes[:sort].to_i
-      new_sort = attributes[:sort] =
+      current = attributes[get_sort_column].to_i
+      new_sort = attributes[get_sort_column] =
               current > latest || current == 0 ?
                       latest :
                       current
-      old_sort = self[:sort].to_i
+      old_sort = self[get_sort_column].to_i
 
       self.class.transaction do
         if new_sort != old_sort
           diff = (old_sort - new_sort) / (old_sort - new_sort).abs
           max_sort = [old_sort, new_sort - diff].max
           min_sort = [old_sort, new_sort - diff].min
-          conditions = ["sort > #{min_sort}", "sort < #{max_sort}"]
+          conditions = ["#{get_sort_column} > #{min_sort}", "#{get_sort_column} < #{max_sort}"]
           conditions.push(scope_condition) unless self.top_level?
-          self.class.update_all("sort = sort + (#{diff})", conditions.join(" AND "))
+          self.class.update_all("#{get_sort_column} = #{get_sort_column} + (#{diff})", conditions.join(" AND "))
         end
         update_attributes!(attributes)
       end
     end
 
     def destroy_mind_sorting
-      conditions = ["sort > #{self[:sort]}"]
+      conditions = ["#{get_sort_column.to_s} > #{self[get_sort_column]}"]
       conditions.push(scope_condition) unless self.top_level?
       self.class.transaction do
         destroy
-        self.class.update_all("sort = sort - 1", conditions.join(" AND "))
+        self.class.update_all("#{get_sort_column} = #{get_sort_column} - 1", conditions.join(" AND "))
       end
     end
 
