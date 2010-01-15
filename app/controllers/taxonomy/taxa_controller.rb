@@ -14,7 +14,7 @@ class TaxaController < ApplicationController
   end
 
 
-#  helper_method :url_for # this is to use controller methods as helpers in views
+  helper_method :model_name
 
 
   before_filter :require_admin

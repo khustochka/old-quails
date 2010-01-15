@@ -7,7 +7,7 @@ end
   require File.join(Rails.root, "lib/rails_ext/action_controller/#{inc_ext}")
 end
 
-%w(base helpers).each do |inc_ext|
+%w(helpers).each do |inc_ext|
   require File.join(Rails.root, "lib/rails_ext/action_view/#{inc_ext}")
 end
 
