@@ -26,7 +26,7 @@ module ActiveRecord
       end
 
       def set_sort_column(value)
-        white_inheritable_attribute(:sort_column, value.to_sym)
+        write_inheritable_attribute(:sort_column, value.to_sym)
       end
 
       def get_sort_column

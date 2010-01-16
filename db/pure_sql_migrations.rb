@@ -1,4 +1,4 @@
-class PureSQLMigrationS < ActiveRecord::Migration
+class PureSQLMigrations < ActiveRecord::Migration
   def self.up
 
     #add foreign keys
