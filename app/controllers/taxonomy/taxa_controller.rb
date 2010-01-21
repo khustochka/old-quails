@@ -63,7 +63,7 @@ class TaxaController < ApplicationController
     @taxon = model_class.new(params[model_sym])
 
     respond_to do |format|
-      @taxon.insert_mind_sorting
+      @taxon.save!
       flash[:notice] = "#{model_name.humanize} was successfully created."
       format.html { redirect_to @taxon, :action => :edit } # need to redirect to edit for species
       #format.xml  { render :xml => @taxon, :status => :created, :location => @taxon }
@@ -83,7 +83,7 @@ class TaxaController < ApplicationController
 
 
   def destroy
-    @taxon.destroy_mind_sorting
+    @taxon.destroy
 
     respond_to do |format|
       format.html { redirect_to :action => "index" }

@@ -1,8 +1,12 @@
-ENV["RAILS_ENV"] = "test"
-require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
+ENV['RAILS_ENV'] = 'test'
+require 'config/environment'
 require 'test_help'
+require 'shoulda'
+require 'spec'
+require 'factory_girl'
 
 class ActiveSupport::TestCase
+  include Spec::Matchers
   # Transactional fixtures accelerate your tests by wrapping each test method
   # in a transaction that's rolled back on completion.  This ensures that the
   # test database remains unchanged so your fixtures don't have to be reloaded
@@ -26,31 +30,35 @@ class ActiveSupport::TestCase
   # test cases which use the @david style and don't mind the speed hit (each
   # instantiated fixtures translates to a database query per test method),
   # then set this back to true.
-  self.use_instantiated_fixtures  = false
+  self.use_instantiated_fixtures = false
 
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
-  fixtures :all
+#  fixtures :all
 
   # Add more helper methods to be used by all tests here...
 
-  def assert_sorting_preserved(klass)
-    if klass.top_level?
-      assert_equal( (1..klass.count).to_a, klass.all(:order => :sort).map {|item| item[:sort] }, "Sorting invalid" )
-    else
-      klass.parent_class.all(:order => :sort, :include => :children).each do |parent|
-        assert_equal( (1..parent.children.size).to_a, parent.children.map {|item| item[:sort] }, "Sorting invalid" )
-      end
-    end
-  end
-
- 	def http_auth
+  def http_auth
     unless CONFIG[:open_access]
       session[CONFIG[:admin_session_ask].to_sym] = CONFIG[:admin_session_reply]
       @request.env["HTTP_AUTHORIZATION"] = "Basic #{Base64.encode64("#{CONFIG[:admin_username]}:#{CONFIG[:admin_password]}")}"
     end
   end
+
+  def be_sorted
+    simple_matcher do |klass|
+      sort_column = klass.get_sort_column
+      if klass.top_level?
+        klass.all(:select => sort_column, :order => sort_column).map {|item| item[sort_column] }.should == Array(1..klass.count)
+      else
+        klass.parent_class.all(:order => sort_column, :include => :children).each do |parent|
+          parent.children.map {|item| item[sort_column] }.should == Array(1..parent.children.size)
+        end
+      end
+    end
+  end
+
 
 end

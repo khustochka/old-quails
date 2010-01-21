@@ -11,6 +11,6 @@ end
   require File.join(Rails.root, "lib/rails_ext/action_view/#{inc_ext}")
 end
 
-%w(sorted_hierarchy).each do |inc_ext|
-  require File.join(Rails.root, "lib/rails_ext/sorted_hierarchy/#{inc_ext}")
+%w(active_record).each do |inc_ext|
+  require File.join(Rails.root, "lib/sorted_hierarchy/#{inc_ext}")
 end

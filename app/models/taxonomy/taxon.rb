@@ -1,10 +1,10 @@
 class Taxon < ActiveRecord::Base
 
-  include ActiveRecord::SortedHierarchy 
+  include SortedHierarchy::ActiveRecord 
 
   self.abstract_class = true
 
-  validates_presence_of :name_la, :name_ru, :name_uk, :sort
+  validates_presence_of :name_la, :name_ru, :name_uk
   validates_uniqueness_of :name_la, :name_ru, :name_uk
 
   # Class methods

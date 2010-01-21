@@ -1,11 +1,15 @@
-module ActiveRecord
-  module SortedHierarchy
+module SortedHierarchy
+  module ActiveRecord 
 
     def self.included(klass)
       klass.extend ClassMethods
+      klass.validate :correctness_of_sort_value
+      klass.before_create :give_way_to_create
+      klass.after_destroy :fix_gap_after_destroy
     end
 
     module ClassMethods
+
       def parent_for(association_id, options = {}, &extension)
         has_many(association_id, options, &extension)
         write_inheritable_hash :reflections, :children => read_inheritable_attribute(:reflections)[association_id]
@@ -65,24 +69,10 @@ module ActiveRecord
       self.class.bottom_level?
     end
 
-    def insert_mind_sorting
-      latest = (self.top_level? ? self.class.count : self.parent.children.size) + 1
-      self[get_sort_column] = latest if self[get_sort_column] > latest || self[get_sort_column] == 0
-      conditions = ["#{get_sort_column} >= #{self[get_sort_column]}"]
-      conditions.push(scope_condition) unless self.top_level?
-      self.class.transaction do
-        self.class.update_all("#{get_sort_column} = #{get_sort_column} + 1", conditions.join(" AND "))
-        save!
-      end
-    end
-
     def update_mind_sorting(attributes)
       latest = self.top_level? ? self.class.count : self.parent.children.size
       current = attributes[get_sort_column].to_i
-      new_sort = attributes[get_sort_column] =
-              current > latest || current == 0 ?
-                      latest :
-                      current
+      new_sort = attributes[get_sort_column] = latest if current.nil?
       old_sort = self[get_sort_column].to_i
 
       self.class.transaction do
@@ -98,19 +88,40 @@ module ActiveRecord
       end
     end
 
-    def destroy_mind_sorting
-      conditions = ["#{get_sort_column.to_s} > #{self[get_sort_column]}"]
-      conditions.push(scope_condition) unless self.top_level?
-      self.class.transaction do
-        destroy
-        self.class.update_all("#{get_sort_column} = #{get_sort_column} - 1", conditions.join(" AND "))
-      end
-    end
-
     private
     def scope_condition
       fk = self.class.parent_key
       "#{fk} = #{self[fk]}"
+    end
+
+    def correctness_of_sort_value
+      raw_value = send("#{get_sort_column}_before_type_cast")
+      unless raw_value.nil?
+        unless raw_value.to_s =~ /\A[+-]?\d+\Z/
+          errors.add(get_sort_column, :not_a_number, :value => raw_value)
+        else
+          latest = (self.top_level? ? self.class.count : self.parent.children.size) + (new_record? ? 1 : 0)
+          if self[get_sort_column] > latest
+            errors.add(get_sort_column, :less_than_or_equal_to, :value => raw_value, :count => latest)
+          end
+        end
+      end
+    end
+
+    def give_way_to_create
+      latest = (self.top_level? ? self.class.count : self.parent.children.size) + 1
+      self[get_sort_column] ||= latest
+      if self[get_sort_column] < latest
+        conditions = ["#{get_sort_column} >= #{self[get_sort_column]}"]
+        conditions.push(scope_condition) unless self.top_level?
+        self.class.update_all("#{get_sort_column} = #{get_sort_column} + 1", conditions.join(" AND "))
+      end
+    end
+
+    def fix_gap_after_destroy
+      conditions = ["#{get_sort_column.to_s} > #{self[get_sort_column]}"]
+      conditions.push(scope_condition) unless self.top_level?
+      self.class.update_all("#{get_sort_column} = #{get_sort_column} - 1", conditions.join(" AND "))
     end
 
   end
