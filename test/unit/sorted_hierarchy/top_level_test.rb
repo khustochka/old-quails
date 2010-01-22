@@ -29,14 +29,14 @@ class SortedHierarchyTopLevelTest < ActiveSupport::TestCase
     should "not be created with invalid sort" do
       lambda {
         Factory.build(:city, :sort => "first").save!
-      }.should raise_exception ActiveRecord::RecordInvalid
+      }.should raise_exception(ActiveRecord::RecordInvalid)
       City.should be_sorted
     end
 
     should "not be created with sort too large" do
       lambda {
         Factory.build(:city, :sort => 56).save!
-      }.should raise_exception ActiveRecord::RecordInvalid
+      }.should raise_exception(ActiveRecord::RecordInvalid)
       City.should be_sorted
     end
 

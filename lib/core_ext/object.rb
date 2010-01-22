@@ -14,6 +14,11 @@ class Object
   end
 
   def if_present!(value = nil, &block)
-    (result = if_present(value, &block)).blank? ? raise(Standard Error, "Object not present (nil, false, or empty).") : result
+    result = if_present(value, &block)
+    if result.blank?
+      raise(Standard Error, "Object is nil or blank.")
+    else
+      result
+    end
   end
 end
