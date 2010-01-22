@@ -53,7 +53,7 @@ class ActiveSupport::TestCase
       if klass.top_level?
         klass.all(:select => sort_column, :order => sort_column).map {|item| item[sort_column] }.should == Array(1..klass.count)
       else
-        klass.parent_class.all(:order => sort_column, :include => :children).each do |parent|
+        klass.parent_class.all(:order => klass.parent_class.get_sort_column, :include => :children).each do |parent|
           parent.children.map {|item| item[sort_column] }.should == Array(1..parent.children.size)
         end
       end

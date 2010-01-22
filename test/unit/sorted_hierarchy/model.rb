@@ -15,5 +15,5 @@ end
 
 class Street < ActiveRecord::Base
   include SortedHierarchy::ActiveRecord
-  child_of :city
+  child_of :district
 end
