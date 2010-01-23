@@ -101,7 +101,7 @@ module SortedHierarchy
         unless raw_value.to_s =~ /\A[+-]?\d+\Z/
           errors.add(get_sort_column, :not_a_number, :value => raw_value)
         else
-          latest = (self.top_level? ? self.class.count : self.parent.children.size) + (new_record? ? 1 : 0)
+          latest = (self.top_level? ? self.class.count : self.parent.children.count) + (new_record? ? 1 : 0)
           if self[get_sort_column] > latest
             errors.add(get_sort_column, :less_than_or_equal_to, :value => raw_value, :count => latest)
           end
@@ -110,7 +110,7 @@ module SortedHierarchy
     end
 
     def give_way_to_create
-      latest = (self.top_level? ? self.class.count : self.parent.children.size) + 1
+      latest = (self.top_level? ? self.class.count : self.parent.children.count) + 1
       self[get_sort_column] ||= latest
       if self[get_sort_column] < latest
         conditions = ["#{get_sort_column} >= #{self[get_sort_column]}"]
