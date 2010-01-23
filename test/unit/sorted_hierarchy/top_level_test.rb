@@ -41,9 +41,9 @@ class SortedHierarchyTopLevelTest < ActiveSupport::TestCase
     end
 
     should "preserve sorting when destroyed" do
-      @old_city = City.find_by_sort(3)
+      @to_delete = Fixie.cities(:to_delete)
       lambda {
-        @old_city.destroy
+        @to_delete.destroy
       }.should change(City, :count).by(-1)
       City.should be_sorted
     end

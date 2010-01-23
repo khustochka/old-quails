@@ -54,7 +54,7 @@ class ActiveSupport::TestCase
         klass.all(:select => sort_column, :order => sort_column).map {|item| item[sort_column] }.should == Array(1..klass.count)
       else
         klass.parent_class.all(:order => klass.parent_class.get_sort_column, :include => :children).each do |parent|
-          parent.children.map {|item| item[sort_column] }.should == Array(1..parent.children.size)
+          parent.children.map {|item| item[sort_column] }.sort.should == Array(1..parent.children.size)
         end
       end
     end

@@ -12,6 +12,7 @@ module SortedHierarchy
 
       def parent_for(association_id, options = {}, &extension)
         has_many(association_id, options, &extension)
+        # TODO: should :order option be specified explicitly?
         write_inheritable_hash :reflections, :children => read_inheritable_attribute(:reflections)[association_id]
         instance_methods.select{|m| m.include?(association_id.to_s)}.each do |method|
           alias_method method.sub(/#{association_id}/, "children"), method
