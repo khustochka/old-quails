@@ -6,6 +6,5 @@ end
 Factory.define :district do |district|
   district.name 'Massive'
   district.sort_num nil
-  district.city nil
 end
 
