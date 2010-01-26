@@ -10,5 +10,11 @@ end
 
 Factory.create(:city)
 Fixie.create(:city, :to_delete)
+city1 = Factory.create(:city)
 Factory.create(:city)
-Factory.create(:city)
+
+Fixie.create(:district, :with_5_streets, :city => city1) 
+
+(1..5).each do |n|
+  Fixie.create(:street, "street#{n}".to_sym, :district => Fixie.districts(:with_5_streets))
+end

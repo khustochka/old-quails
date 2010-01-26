@@ -8,3 +8,8 @@ Factory.define :district do |district|
   district.sort_num nil
 end
 
+Factory.define :street do |street|
+  street.name 'Gagarina'
+  street.sort nil
+end
+

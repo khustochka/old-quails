@@ -4,7 +4,7 @@ class SortedHierarchyMidLevelTest < ActiveSupport::TestCase
   context "Mid level object" do
 
     setup do
-      District.count.should == 5
+      District.count.should == 6
       District.should be_sorted
     end
 
