@@ -62,8 +62,7 @@ class LegacyTask
               :synonims => Utils.enconv(order[:ordo_syn]),
               :sort => order[:ordo_id]
       )
-      fam_num = 0
-      order.families.each do |family|
+      order.families.each_with_index do |family, fam_num|
       puts "   - Saving family #{family[:fam_la]}"
         familia = ordo.familiae.create!(
                 :name_la => family[:fam_la],
@@ -72,10 +71,9 @@ class LegacyTask
                 :name_uk => Utils.enconv(family[:fam_uk]),
                 :description => Utils.enconv(family[:fam_descr]),
                 :synonims => Utils.enconv(family[:fam_syn]),
-                :sort => fam_num += 1
+                :sort => fam_num + 1
           )
-          sp_num = 0
-          family.species.each do |sp|
+          family.species.each_with_index do |sp, sp_num|
           puts "     - Saving species #{sp[:sp_la]}"
             species = familia.species.create!(
                     :code => sp[:sp_id],
@@ -87,7 +85,7 @@ class LegacyTask
                     :description => Utils.enconv(sp[:sp_descr]),
                     :my_description => Utils.enconv(sp[:my_descr]),
                     :synonims => Utils.enconv(sp[:sp_syn]),
-                    :sort => sp_num += 1
+                    :sort => sp_num + 1
               )
           end
         

@@ -4,7 +4,7 @@ require 'test/unit/sorted_hierarchy/factories'
 
 Fixie.create(:city, :with_5_districts)
 
-(1..5).each do |n|
+1.upto(5) do |n|
   Fixie.create(:district, "district#{n}".to_sym, :city => Fixie.cities(:with_5_districts))
 end
 
