@@ -73,7 +73,7 @@ class TaxaController < ApplicationController
 
   def update
     respond_to do |format|
-      @taxon.update_mind_sorting(params[model_sym])
+      @taxon.update_attributes!(params[model_sym])
       flash[:notice] = "#{model_name.humanize} was successfully updated."
       format.html { redirect_to @taxon, :action => :edit } # need to redirect to edit for species
       #format.xml  { head :ok }

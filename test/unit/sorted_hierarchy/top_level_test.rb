@@ -47,6 +47,33 @@ class SortedHierarchyTopLevelTest < ActiveSupport::TestCase
       }.should change(City, :count).by(-1)
       City.should be_sorted
     end
+
+    should "be moved down correctly" do
+      @to_move = Fixie.cities(:to_move_down)
+      last = City.last
+      @to_move.sort = City.count
+      @to_move.save!
+      City.should be_sorted
+      last.reload.sort.should == City.count - 1
+    end
+
+    should "be moved up correctly" do
+      @to_move = Fixie.cities(:to_move_up)
+      first = City.first
+      @to_move.sort = 1
+      @to_move.save!
+      City.should be_sorted
+      first.reload.sort.should == 2
+    end
+
+    should "preserve sorting if not changed" do
+      @to_change = Fixie.cities(:to_move_up)
+      sort = @to_change.sort
+      @to_change.name = "Boyarka"
+      @to_change.save!
+      City.should be_sorted
+      @to_change.sort.should == sort
+    end
   end
 
 end

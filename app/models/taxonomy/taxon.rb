@@ -1,6 +1,6 @@
 class Taxon < ActiveRecord::Base
 
-  include SortedHierarchy::ActiveRecord 
+  include SortedHierarchy::ActiveRecord
 
   self.abstract_class = true
 
