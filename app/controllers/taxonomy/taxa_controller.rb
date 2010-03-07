@@ -25,7 +25,7 @@ class TaxaController < ApplicationController
 
   before_filter :find_taxon, :only => [:update, :destroy]
   before_filter :find_taxon_with_children, :only => :show
-  before_filter :find_all_taxa, :only => [:new, :show]
+  before_filter :find_all_siblings_and_parents, :only => [:new, :show]
   before_filter :prepare_hierarchy, :only => :index
 
   rescue_from ActiveRecord::RecordInvalid, :with => :rescue_invalid_record
@@ -45,8 +45,9 @@ class TaxaController < ApplicationController
 
 
   def new
-    @taxon = model_class.new(:sort => @taxa.size + 1)
-
+    @taxon = model_class.new(:sort => @siblings.size + 1)
+    parent = params[model_class.parent_key]
+    @taxon[model_class.parent_key] = parent #unless parent.nil?
     respond_to do |format|
       format.html { render 'taxa/add_edit' }
       #format.xml  { render :xml => @taxon }
@@ -101,9 +102,19 @@ class TaxaController < ApplicationController
     @bunch = @taxon.children unless @taxon.bottom_level?
   end
 
-  def find_all_taxa
+  def find_all_siblings_and_parents
     @proceed_methods = []
-    @taxa = @taxon.nil? || @taxon.top_level? ? model_class.all(:order => "sort") : @taxon.parent.children
+    @siblings = if model_class.top_level?
+      model_class.all
+    elsif !@taxon.nil? && !@taxon[model_class.parent_key].nil?
+      @taxon.siblings_scope.all
+    elsif params[model_class.parent_key].nil?
+      []
+    else
+      model_class.siblings_scope(params[model_class.parent_key])
+    end
+
+    @parents = model_class.top_level? ? [] : model_class.parent_class.all 
   end
 
   def prepare_hierarchy
@@ -113,7 +124,9 @@ class TaxaController < ApplicationController
 
   def rescue_invalid_record
     respond_to do |format|
-      find_all_taxa
+      find_all_siblings_and_parents
+      # TODO: maybe move nil or illegal sort transformation to valid last one into Sorted Hierarchy callback like before_validation ?
+      @taxon.sort = (@siblings.size + 1) if !@taxon[model_class.parent_key].nil? && (@taxon.sort.nil? || @taxon.changed.include?(model_class.parent_key.to_s))
       format.html { render 'taxa/add_edit' }
       #format.xml  { render :xml => @taxon.errors, :status => :unprocessable_entity }
     end

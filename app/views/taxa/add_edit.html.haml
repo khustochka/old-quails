@@ -11,6 +11,6 @@
 
 %h2
   Редактировать
-= render :partial => "taxa/form",  :locals => { :item => @taxon, :items => @taxa }
+= render :partial => "taxa/form",  :locals => { :item => @taxon, :items => @siblings }
 = link_to "#{model_name.pluralize.humanize} index", :action => "index"
 = " | " + link_to("Add new #{model_name}", :action => "new") if controller.action_name != 'new'

@@ -33,6 +33,7 @@ module SortedHierarchy
           {:conditions => "#{parent_key} = #{fk}"}
         }
         default_scope :order => get_sort_column
+        validate :parent_existence
       end
 
       def set_sort_column(value)
@@ -91,6 +92,10 @@ module SortedHierarchy
 
     private
 
+    def parent_existence # effective only for child
+      errors.add(parent_key, :invalid, :value => self[parent_key]) if self.class.parent_class.find_by_id(self[parent_key]).nil?
+    end
+
     def correctness_of_sort_value
       raw_value = send("#{get_sort_column}_before_type_cast")
       unless raw_value.nil?
@@ -107,7 +112,7 @@ module SortedHierarchy
 
     def give_way_to_create
       latest = siblings_count + 1
-      self[get_sort_column] ||= latest
+      self[get_sort_column] = latest if self[get_sort_column].nil? || self.changed.include?(parent_key.to_s)
       if self[get_sort_column] < latest
         siblings_scope.update_all("#{get_sort_column} = #{get_sort_column} + 1", "#{get_sort_column} >= #{self[get_sort_column]}")
       end

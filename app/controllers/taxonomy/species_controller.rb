@@ -3,7 +3,7 @@ class SpeciesController < TaxaController
   skip_before_filter :require_admin, :only => [:index, :show]
 
   before_filter :find_taxon, :only => [:edit, :update, :destroy]
-  before_filter :find_all_taxa, :only => [:new, :show, :edit]
+  before_filter :find_all_siblings_and_parents, :only => [:new, :show, :edit]
 
   def index
     respond_to do |format|
