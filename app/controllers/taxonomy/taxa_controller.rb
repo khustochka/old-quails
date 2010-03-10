@@ -126,7 +126,7 @@ class TaxaController < ApplicationController
     respond_to do |format|
       find_all_siblings_and_parents
       # TODO: maybe move nil or illegal sort transformation to valid last one into Sorted Hierarchy callback like before_validation ?
-      @taxon.sort = (@siblings.size + 1) if !@taxon[model_class.parent_key].nil? && (@taxon.sort.nil? || @taxon.changed.include?(model_class.parent_key.to_s))
+#      @taxon.sort = (@siblings.size + 1) if !@taxon[model_class.parent_key].nil? && (@taxon.sort.nil? || @taxon.changed.include?(model_class.parent_key.to_s))
       format.html { render 'taxa/add_edit' }
       #format.xml  { render :xml => @taxon.errors, :status => :unprocessable_entity }
     end

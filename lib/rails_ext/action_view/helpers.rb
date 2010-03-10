@@ -3,7 +3,7 @@ module ActionView::Helpers
   class FormBuilder
 
     def set_sorting_combo(bunch, one, &block)
-      select( :sort, [["At the beginning", 1]] + (bunch - [one]).map {|tx| [block_given? ? (yield tx) : "sort number: #{tx[:sort]}", tx[:sort] + (tx[:sort] < one[:sort] ? 1 : 0)]} )
+      select( :sort, [["At the beginning", 1]] + (bunch - [one]).map {|tx| [block_given? ? (yield tx) : "sort number: #{tx[:sort]}", tx[:sort] + (one.new_record? || tx[:sort] < one[:sort] ? 1 : 0)]} )
     end
 
     alias :original_method_missing :method_missing

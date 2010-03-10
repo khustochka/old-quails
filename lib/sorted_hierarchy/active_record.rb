@@ -112,7 +112,7 @@ module SortedHierarchy
 
     def give_way_to_create
       latest = siblings_count + 1
-      self[get_sort_column] = latest if self[get_sort_column].nil? || self.changed.include?(parent_key.to_s)
+      self[get_sort_column] = latest if self[get_sort_column].nil? #|| self.changed.include?(parent_key.to_s)
       if self[get_sort_column] < latest
         siblings_scope.update_all("#{get_sort_column} = #{get_sort_column} + 1", "#{get_sort_column} >= #{self[get_sort_column]}")
       end
