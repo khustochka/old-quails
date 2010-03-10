@@ -35,17 +35,17 @@ Feature: Restricted access to administration parts for external users
 
   Scenario: Unauthorized user should not see New Ordo page
 
-    When I go to New Ordo page
+    When I go to the new ordo page
     Then I should see 404 status page
 
   Scenario: Unauthorized user should not see New Familia page
 
-    When I go to New Familia page
+    When I go to the new familia page
     Then I should see 404 status page
 
   Scenario: Unauthorized user should not see New Species page
 
-    When I go to New Species page
+    When I go to the new species page
     Then I should see 404 status page
 
   Scenario: Unauthorized user should not create new ordo

@@ -15,6 +15,11 @@ Given /^logged as "([^"]*)" with password "(.*)"$/ do |user_name, password|
   basic_auth(user_name, password)
 end
 
+Given /^logged as administrator$/ do
+  Given 'logged as "admin" with password "secret2pwd"'
+  When 'I go to Admin dashboard'
+end
+
 Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
 end
@@ -24,7 +29,10 @@ When /^(?:|I )go to (.+)$/ do |page_name|
 end
 
 When /^(?:|I )press "([^\"]*)"$/ do |button|
-  click_button(button)
+  begin
+    click_button(button)
+  rescue ActiveRecord::RecordInvalid
+  end
 end
 
 When /^(?:|I )follow "([^\"]*)"$/ do |link|
@@ -130,16 +138,16 @@ When /^(?:|I )attach the file "([^\"]*)" to "([^\"]*)"$/ do |path, field|
   type = path.split(".")[1]
 
   case type
-  when "jpg"
-    type = "image/jpg" 
-  when "jpeg"
-    type = "image/jpeg" 
-  when "png"
-    type = "image/png" 
-  when "gif"
-    type = "image/gif"
+    when "jpg"
+      type = "image/jpg"
+    when "jpeg"
+      type = "image/jpeg"
+    when "png"
+      type = "image/png"
+    when "gif"
+      type = "image/gif"
   end
-  
+
   attach_file(field, path, type)
 end
 
@@ -267,8 +275,8 @@ end
 
 Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
   actual_params   = CGI.parse(URI.parse(current_url).query)
-  expected_params = Hash[expected_pairs.rows_hash.map{|k,v| [k,[v]]}]
- 
+  expected_params = Hash[expected_pairs.rows_hash.map{|k, v| [k, [v]]}]
+
   if defined?(Spec::Rails::Matchers)
     actual_params.should == expected_params
   else

@@ -17,8 +17,8 @@ module NavigationHelpers
     when /(Ordines|Familiae) Index/
       "/admin/#{$1.downcase}"
 
-    when /New (Ordo|Familia|Species) page/
-      "/admin/#{$1.downcase}/new"
+    when /the new (ordo|familia|species) page/
+      "/admin/#{$1.pluralize}/new"
 
     when /'([^']*)'/
       $1
