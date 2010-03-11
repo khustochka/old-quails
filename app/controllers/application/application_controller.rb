@@ -15,10 +15,15 @@ class ApplicationController < ActionController::Base
 
   private
   def set_locale
-    I18n.locale = ["en", "uk"].include?(params[:hl]) ? params[:hl] : "ru"
+    I18n.locale = non_default_locales.include?(params[:hl]) ? params[:hl] : I18n.default_locale
+#    I18n.reload!
   end
 
   def default_url_options(options={})
-    { :hl => I18n.locale } if ["en", "uk"].include?(I18n.locale) 
+    { :hl => I18n.locale } if non_default_locales.include?(I18n.locale)
+  end
+
+  def non_default_locales
+    %w(en uk ru) - [I18n.default_locale.to_s]
   end
 end
