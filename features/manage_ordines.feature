@@ -1,17 +1,14 @@
 Feature: Manage ordines
-  In order to [goal]
-  [stakeholder]
-  wants [behaviour]
   
   Scenario: Register new ordo
     Given logged as administrator
     When I go to the new ordo page
     When I fill in the following:
-      | Name la | Sphenisciformes2   |
+      | Name la | Sphenisciformes   |
       | Name ru | Пингвинообразные  |
       | Name uk | Пінгвіноподібні   |
     And I press "Create"
-    Then I should see "Sphenisciformes"
+    Then I should see "Ordo was successfully created."
 
 #  Scenario: Delete ordo
 #    Given the following ordines:
